@@ -1,0 +1,66 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+<view class="tab">
+    <view wx:for="{{tabList}}" class="'tab-item' {{acTab === index ? 'ac' : ''}}" wx:key="index" bindtap="changeTab" id="{{index}}">{{item}}</view>
+</view>
+<view style="height: 20rpx;position: relative;background-color: #f5f5f5;z-index: 5;"></view>
+<view class="choose" id="choose">
+    <view bindtap="filterS" hidden="{{index >= 2 && acTab !== 2}}" style="width: {{acTab === 0 || acTab === 1 ? '50' : '33.33'}}%" class="choose-item" wx:for="{{filterArr}}" wx:key="index" id="{{item.id}}">
+        <view>{{filters.copySubstring(item.name)}}</view>
+    </view>
+</view>
+<view hidden="{{acTab !== 0}}">
+    <view hidden="{{tableData0.length === 0 && load0}}">
+        <view class="conta" style="height: {{400*scale}}px" hidden="{{(tableData0.length === 0 && load0) || showFilter}}">
+            <ec-canvas id="mychart0" canvas-id="mychart-line0" ec="{{ ec }}"></ec-canvas>
+        </view>
+        <view class="biwrap">
+            <view>销售件数：<text>{{saleCount}}</text></view>
+            <view>销售金额：<text>{{saleMoney}}</text></view>
+            <view>笔数：<text>{{saleBi}}</text></view>
+        </view>
+    </view>
+    <view class="table">
+        <view class="tr" wx:for="{{tableData0}}" wx:key="index">
+            <view class="td">{{item.date}}</view>
+            <view class="td">{{item.totalNumber}}</view>
+            <view class="td">{{item.totalShouldPay}}</view>
+            <view class="td">{{item.count}}</view>
+        </view>
+    </view>
+    <view class="empty" wx:if="{{tableData0.length === 0 && load0}}">暂无数据</view>
+</view>
+<view hidden="{{acTab !== 1}}">
+    <view hidden="{{(tableData1.length === 0 && load1) || showFilter}}" class="conta" style="height: {{400*scale}}px">
+        <ec-canvas id="mychart1" canvas-id="mychart-line1" ec="{{ ec }}"></ec-canvas>
+    </view>
+    <view class="table">
+        <view class="tr" wx:for="{{tableData1}}" wx:key="index">
+            <view class="td">{{item.date}}</view>
+            <view class="td">{{item.count}}</view>
+            <view class="td">{{item.inc}}</view>
+            <view class="td">{{item.active}}</view>
+        </view>
+    </view>
+    <view class="empty" wx:if="{{tableData1.length === 0 && load1}}">暂无数据</view>
+</view>
+<view class="ac2" hidden="{{acTab !== 2}}">
+    <view class="g-item" wx:for="{{goodsData}}" wx:key="index">
+        <image class="g-img" src="{{filters.middleSize(baseUrl + item.imageUrl)}}"></image>
+        <view class="g-ii">
+            <view class="g-name two-line">{{item.commodityName}}</view>
+            <view class="g-style">款号：{{item.styleNumber}}</view>
+        </view>
+        <view class="g-r">
+            <view><text>访问量：</text>{{item.pv}}</view>
+            <view><text>转发量：</text>{{item.share}}</view>
+            <view><text>销售量：</text>{{item.sale}}</view>
+        </view>
+    </view>
+</view>
+<view class="empty" wx:if="{{goodsData.length === 0 && load2}}">暂无数据</view>
+<view class="mode" id="mode" catchtouchmove="true" style="padding-top: {{modePt}}px" hidden="{{!showFilter}}" bindtap="handleMode">
+    <scroll-view scroll-y class="sc" style="height: {{scrHei}}px">
+        <view bindtap="changeFilter" class="sc-item {{((saler0 === item.id || time0.value === item.id) && acTab === 0) || ((saler1 === item.id || time1.value === item.id) && acTab === 1) || ((saler2 === item.id || time2.value === item.id || sort === item.id) && acTab === 2) ? 'ac' : ''}}" wx:for="{{fffArr}}" wx:key="index" data-id="{{item.id}}" data-name="{{item.name}}">{{item.name}}</view>
+    </scroll-view>
+</view>
+<push-box id="pushBox"></push-box>

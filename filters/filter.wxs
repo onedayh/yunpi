@@ -1,0 +1,57 @@
+var filters = {
+	toFix: function (value) {
+		return parseFloat(value).toFixed(2)//此处2为保留两位小数
+	},
+
+	//1待付款 2待核实 3未发货 5已发货 6已作废 7已完成
+	formatOrderStatus: function (value) {
+		switch (value) {
+			case 1:
+				return '待付款'
+				break;
+			case 2:
+				return '待核实'
+				break;
+			case 3:
+				return '待发货'
+				break;
+			case 5:
+				return '已发货'
+				break;
+			case 6:
+				return '已作废'
+				break;
+			case 7:
+				return '已完成'
+				break;
+		}
+	},
+
+	bigSize: function(url){
+	    return url + '?s=1080'
+	},
+
+	middleSize: function(url){
+        return url + '?s=720'
+    },
+
+    smallSize: function(url){
+        return url + '?s=360'
+    },
+
+    copyIndexOf: function(arr, id){
+        return arr.indexOf(id) > -1 ? 'select_b' : 'unselect_b'
+    },
+    copySubstring: function(str){
+        return str.substring(0, 6)
+    }
+}
+module.exports = {
+	toFix: filters.toFix,
+	formatOrderStatus: filters.formatOrderStatus,
+	bigSize: filters.bigSize,
+	middleSize: filters.middleSize,
+	smallSize: filters.smallSize,
+	copyIndexOf: filters.copyIndexOf,
+	copySubstring: filters.copySubstring
+}

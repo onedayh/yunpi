@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "发布商品",
+    "usingComponents": {
+        "push-box": "../../components/push-box/index"
+    }
+}

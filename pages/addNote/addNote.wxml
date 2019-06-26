@@ -1,0 +1,10 @@
+<view class="text">对<text>{{name}}</text>添加销售笔记</view>
+<view class="content-wrap">
+    <textarea class="" value="{{content}}" maxlength="200" placeholder="请输入内容" placeholder-class="pl-class" bindinput="bindinput" auto-focus></textarea>
+    <view class="count">{{content.length}} / 200</view>
+</view>
+<form report-submit="true" bindsubmit="add">
+    <button class='add-btn' form-type="submit">保存</button>
+</form>
+<push-box id="pushBox"></push-box>
+

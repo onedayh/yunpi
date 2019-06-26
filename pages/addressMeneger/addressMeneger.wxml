@@ -1,0 +1,37 @@
+<view>
+    <view wx:if="{{addressList.length > 0 && load}}" class="item" wx:for="{{addressList}}" wx:key="{{index}}">
+      <view catchtap="selectAddress" data-index="{{index}}">
+        <view class="a-name">{{item.logisticsName}}<text></text>{{item.mobilePhone}}</view>
+        <view class="address">{{item.detailedProvince + item.detailedCity + item.detailedDistrict + item.detailedAddress}}</view>
+      </view>
+        <view class="a-handle">
+            <view class="h-left" bindtap="setDefault" data-id="{{item.addressId}}">
+                <image src="../../img/{{item.addressId === addressId ? '' : 'un'}}select.png"></image>
+                <text>默认地址</text>
+            </view>
+            <view class="h-right">
+                <view style="margin-right: 40rpx;" data-id="{{item.addressId}}" data-index="{{index}}" bindtap="edit">
+                    <image src="../../img/edit.png"></image>
+                    <text>编辑</text>
+                </view>
+                <view data-id="{{item.addressId}}" data-index="{{index}}" bindtap="delete">
+                    <image src="../../img/delete.png"></image>
+                    <text>删除</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{addressList.length === 0 && load}}" class='imgAdress'>
+        <view class='adress'>
+            <image class='addressImg' src='/img/adree.png'></image>
+        </view>
+        <view class='adressName'>您 还 没 有 收 货 地 址 哦~</view>
+    </view>
+</view>
+
+<view class='addAndweixin'>
+    <view class='addDress' bindtap="add">去添加收货地址</view>
+    <view class='makeW' bindtap='useWx'>使用微信地址</view>
+</view>
+
+<push-box id="pushBox"></push-box>

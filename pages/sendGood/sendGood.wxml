@@ -1,0 +1,22 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+
+<view class="imgleft" wx:for="{{goodList}}" wx:key="index">
+    <view class='goodsimg'>
+        <image class='goodsimgs' src='{{filters.middleSize(baseUrl + item.imageFirst)}}'></image>
+    </view>
+    <view class='goodsdes'>{{item.commodityName}}</view>
+    <view class='pshouContent aal'>
+        <text class="ac">已售：{{item.salesVolume || 0}}</text>
+        <text class="style-number">款号：{{item.styleNumber}}</text>
+    </view>
+    <image class="select" src="../../img/{{selectId === item.cardId ? 'select_b' : 'unselect_b'}}.png"></image>
+    <form class="aaaf" report-submit="true" bindsubmit="select" id='{{item.cardId}}'>
+        <button class="aaab" form-type="submit"></button>
+    </form>
+</view>
+<view class="send-wrap" bindtap="send">
+    <image src="../../img/send_good.png"></image>
+    <text>发送商品卡</text>
+</view>
+<view wx:if="{{feedback}}" class="pull-down">{{feedback}}</view>
+<view class="empty" wx:if="{{goodList.length === 0 && load}}">暂无数据</view>

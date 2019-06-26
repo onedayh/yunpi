@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "商品卡数据",
+    "usingComponents": {
+        "push-box": "../../components/push-box/index"
+    }
+}

@@ -1,0 +1,21 @@
+.form{
+    width: 100%;
+}
+.form-btn{
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    border-radius: 0;
+    overflow: hidden;
+    font-size: 32rpx;
+    background-color: transparent;
+    color: transparent;
+    height: auto;
+	line-height: initial;
+}
+.form-btn::after{
+    border: none;
+}
+.form-btn:hover{
+    background-color: transparent;
+}

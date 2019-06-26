@@ -1,0 +1,21 @@
+<image src="../../img/rec.png" mode="widthFix" class="big-img"></image>
+<view class="ttt">
+    <text>推荐好友</text>
+    <text><text class="red">好友享首单{{prizePrice}}元</text>立减</text>
+    <text><text class="red">您得{{prizePrice}}元</text>立减券</text>
+</view>
+<view class="tt">
+    <view class="rule">奖励规则</view>
+    <view class="rule-detail">分享链接给微信好友，好友注册并且成功下单一次之后，您即可获得对应的奖励红包，您可以在优惠券中查看。下次下单直接自动抵扣，有效期是一个月。</view>
+</view>
+<button class="invite" open-type="share">
+    <image class="wx" src="../../img/wx.png"></image>
+    立即邀请
+</button>
+<view class="bot" bindtap="goDetail">
+    <text class="yuan">已获得奖励：{{reward}}元</text>
+    <text class="look">去查看</text>
+</view>
+
+<push-box id="pushBox"></push-box>
+

@@ -1,0 +1,31 @@
+.text{
+    font-size: 28rpx;
+    color: #333;
+    padding: 30rpx 20rpx;
+    line-height: 1.3;
+}
+.text text{
+    color: orangered;
+    padding: 0 8rpx;
+}
+.content-wrap{
+    background-color: #fff;
+}
+textarea{
+    width: 100%;
+    height: 350rpx;
+    box-sizing: border-box;
+    padding: 20rpx;
+    line-height: 40rpx;
+    color: #333;
+    font-size: 28rpx;
+}
+.count{
+    background-color: #fff;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: right;
+    font-size: 28rpx;
+    padding-right: 30rpx;
+    color: #999;
+}

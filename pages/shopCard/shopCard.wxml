@@ -1,0 +1,47 @@
+<view class="wrap" wx:if="{{load}}">
+    <view class="name">
+        <image src="{{shopData.picture ? baseUrl + shopData.picture : defaultHead}}"></image>
+        <text>{{shopData.siteName}}</text>
+    </view>
+    <view class="list" style="height: {{listHeight}}rpx;overflow: hidden" animation="{{spreadAnimate}}">
+        <view class="item" wx:for="{{shopData.infraOrganization}}" wx:key="index">
+            <view>门店：{{item.name}}</view>
+            <view>
+                <text>电话：{{item.phone}}</text>
+                <text class="handle" bindtap="handle" data-content="{{item.phone}}" data-type="call">拨打</text>
+            </view>
+            <view>
+                <text>地址：{{item.address}}</text>
+                <text class="handle" bindtap="handle" data-content="{{item.address}}" data-type="copy">复制</text>
+            </view>
+        </view>
+    </view>
+    <view class="more" wx:if="{{icon}}" bindtap="getMore" data-icon="{{icon}}">
+        <image src="../../img/icon_{{icon}}.png"></image>
+    </view>
+</view>
+<scroll-view scroll-y class="b-wrap" scroll-into-view="{{intoView}}" scroll-with-animation="{{scAni}}" style="height: {{slHei}}px" wx:if="{{load}}">
+    <view class="b" catchtouchmove="true" id="bb">
+        <view class="b-item" wx:for="{{barrages}}" id="id{{index}}" wx:key="index">
+            <text>{{item.name}}：</text>{{item.createTime}}{{item.content}}
+        </view>
+    </view>
+</scroll-view>
+
+<view class="user-set" wx:if="{{load}}">
+    <view bindtap="goNext" id="intro">店铺介绍</view>
+    <text></text>
+    <view bindtap="goNext" id="look">查看店铺</view>
+</view>
+
+<view style="position: absolute;left: -210px;top: -168px;">
+    <canvas canvas-id="myCanvas" class="my-canvas" style="width: 210px; height: 168px"></canvas>
+</view>
+
+<view class="login-wrap" catchtouchmove='true' animation="{{loginAnimation}}">
+    <login bindlogin="bindlogin"></login>
+</view>
+
+<push-box id="pushBox"></push-box>
+
+<coupon-window bind:cha="cha" couponData="{{couponData}}"></coupon-window>

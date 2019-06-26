@@ -1,0 +1,133 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+<view class="top">
+    <image class="head" src="{{customer.head}}"></image>
+    <view class="info-wrap">
+        <view class="name">
+            <view class="nae one-line">{{infoList[2].value}}</view>
+            <view class="yuan">{{customer.level}}会员</view>
+        </view>
+        <view class="time">{{customer.time ? '最近互动 ' + customer.time : ''}}</view>
+    </view>
+    <form report-submit="true" bindsubmit="goIm" style="margin-left: auto;">
+        <button class='add-btn' form-type="submit" data-id="{{customer.im}}">发消息</button>
+    </form>
+</view>
+
+<form-notice bind:formbutton="getform">
+    <view class="tab">
+        <view wx:for="{{tabList}}" class="'tab-item' {{acTab === index ? 'ac' : ''}}" wx:key="index" bindtap="changeTab" data-id="{{index}}">{{item}}</view>
+    </view>
+</form-notice>
+<!--线索-->
+<view class="wrap wrap1 {{clueList.length === 0 && load1 ? 'ad' : ''}}" hidden="{{acTab !== 0}}">
+    <view>
+        <view wx:for="{{clueList}}" wx:key="index" class="clue-item {{item.type === 1 ? 'note' : ''}}">
+            <view class="clue-time">
+                <view class="t-date">{{item.t_date}}</view>
+                <view class="t-hour">{{item.t_hour}}</view>
+            </view>
+            <view class="clue-content">{{item.type === 1 ? '你对客户 ' + item.name + ' 添加销售笔记！笔记内容是「' + item.content + '」' : item.content}}</view>
+        </view>
+    </view>
+    <view wx:if="{{feedback1}}" class="pull-down">{{feedback1}}</view>
+    <view class="empty" wx:if="{{clueList.length === 0 && load1}}">暂无数据</view>
+</view>
+
+<!--资料-->
+<view hidden="{{acTab !== 1}}" class="wrap wrap2">
+    <view wx:for="{{infoList}}" wx:key="index" class="info-item {{item.id ? 'hasid' : ''}}" data-id="{{item.id}}" bindtap="goNext" data-value="{{item.value}}" data-index="{{index}}">
+        <view class="info-name">{{item.name}}</view>
+        <view class="info-value">{{item.value}}</view>
+        <picker class="picker" wx:if="{{item.mode}}" data-id="{{item.id}}" mode="{{item.mode}}" range="{{item.id === 'customerLevel' ? lList : item.id === 'category' ? cList : item.id === 'suitablePrice' ? pList : []}}" bindchange="bindChange">
+            <view class="picker-view"></view>
+        </picker>
+    </view>
+    <view wx:if="{{noteList.length > 0}}" style="padding-bottom: 40rpx;">
+        <view class="info-note">笔记记录</view>
+        <scroll-view class="s-y" scroll-y>
+            <view wx:for="{{noteList}}" wx:key="index" class="clue-item note-item">
+                <view class="clue-time">
+                    <view class="t-date">{{item.t_date}}</view>
+                    <view class="t-hour">{{item.t_hour}}</view>
+                </view>
+                <view class="clue-content">{{item.content}}</view>
+            </view>
+        </scroll-view>
+    </view>
+</view>
+
+<!--订单-->
+<view hidden="{{acTab !== 2}}" class="wrap3">
+    <view class="total" wx:if="{{orderText}}">{{orderText}}</view>
+    <block wx:for="{{orderList}}" wx:for-item="val" wx:for-index="key" wx:key="key">
+        <view class='title'>
+            <view class='text'>{{val.orderStatusText}}</view>
+            <view class='detail' wx:if="{{val.orderStatus == 1}}">
+                <image src='/img/icon-clock.png' mode='widthFix' lazy-load='true'></image>
+                <text>{{val.countdown}}</text>
+            </view>
+        </view>
+        <view class='productMapContent'>
+            <view bindtap='goToDetail' data-id="{{val.reservationId}}">
+                <view class='productMap' wx:for="{{val.snapShot}}" wx:for-item="v" wx:for-index="k" wx:key="k">
+                    <view class='mapLeft'>
+                        <image class='mapLeftImg' lazy-load='true' src='{{filters.middleSize(baseUrl + v.imageUrl)}}'></image>
+                    </view>
+                    <view class='mapRight'>
+                        <view class='productMapDetail two-line'>{{v.commodityName}}</view>
+                        <view class='productMapPrice'>
+                            <view class='price'>￥{{filters.toFix(v.priceRange)}}</view>
+                            <view class='count'>×{{v.number}}</view>
+                        </view>
+                        <view class='freightNumber'>{{v.sku}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class='total-t'>
+                <view>共{{val.number}}件商品</view>
+                <view class='total_price'>订单金额：￥{{filters.toFix(val.shouldPay)}}</view>
+            </view>
+        </view>
+    </block>
+    <view wx:if="{{feedback3}}" class="pull-down">{{feedback3}}</view>
+    <view class="empty" wx:if="{{orderList.length === 0 && load3}}">暂无数据</view>
+</view>
+
+<!--分析-->
+<view hidden="{{acTab !== 3}}">
+    <view class="wrap wrap2">
+        <view class="chat-title">
+            活跃度分析
+            <button class="add-btn data-item date-ac">近30天</button>
+        </view>
+        <view class="conta" style="height: {{444*scale}}px">
+            <ec-canvas id="mychart" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+        </view>
+    </view>
+    <view class="wrap wrap2">
+        <view class="chat-title">
+            核心行为分析
+            <button wx:for="{{dateArr}}" wx:key="index" class="add-btn data-item {{centerId === item.id ? 'date-ac' : ''}}" data-id="{{item.id}}" data-type="center" bindtap="changeData">{{item.name}}</button>
+        </view>
+        <view class="c-wrap">
+            <view class="c-item" wx:for="{{centerList}}" wx:key="index">
+                <view class="c-name">{{item.name}}</view>
+                <view class="c-value">{{item.value}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="wrap wrap2">
+        <view class="chat-title">
+            购买行为分析
+            <button wx:for="{{dateArr}}" wx:key="index" class="add-btn data-item {{shopId === item.id ? 'date-ac' : ''}}" data-id="{{item.id}}" data-type="shop" bindtap="changeData">{{item.name}}</button>
+        </view>
+        <view class="c-wrap">
+            <view class="c-item" wx:for="{{shopList}}" wx:key="index">
+                <view class="c-name">{{item.name}}</view>
+                <view class="c-value">{{item.value}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<push-box id="pushBox"></push-box>

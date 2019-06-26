@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "设置",
+    "disableScroll": true,
+    "usingComponents": {
+        "push-box": "../../components/push-box/index"
+    }
+}

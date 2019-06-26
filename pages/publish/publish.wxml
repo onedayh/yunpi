@@ -1,0 +1,74 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+<view class="wrap">
+    <input type="text" maxlength="50" class="input" bindinput="inputTitle" value="{{title}}" placeholder="请输入商品标题" placeholder-class="pl-class"></input>
+    <input type="text" class="input" bindinput="inputStyle" value="{{style}}" placeholder="请输入款号" placeholder-class="pl-class"></input>
+    <view class="photo">
+        <view class="add pic-wrap" wx:for="{{img}}" wx:key="index" bindtap="change" id="{{index}}">
+            <image class="img" src="{{baseUrl + item + '?s=sq'}}" id="change"></image>
+            <image class="pic-delete" id="delete" src="../../img/delete_pic.png"></image>
+        </view>
+        <view class="add" bindtap="add" hidden="{{img.length >= 9}}">
+            <image class="add-pic" src="../../img/add.png"></image>
+            <text class="add-text">添加图片</text>
+        </view>
+    </view>
+</view>
+<view class="wrap">
+    <block wx:for="{{optsArr}}" wx:key="index" >
+        <view wx:if="{{item.type !== 'picker'}}" class="item {{item.type === 'view' ? 'arrow' : ''}}" bindtap="showView" data-id="{{item.id}}" data-type="{{item.type}}">
+            <view>{{item.name}}</view>
+            <view class="right-v one-line" wx:if="{{item.type === 'view'}}">{{item.value}}</view>
+            <input class="right-v" bindinput="inputPrice" id="{{index}}" placeholder="请输入{{item.name}}" placeholder-class="pl-class" class="i-input" wx:if="{{item.type === 'input'}}" type="text" value="{{item.price}}"></input>
+        </view>
+        <picker style="border-bottom: 2rpx solid #e6e6e6;" wx:if="{{item.type === 'picker'}}" range="{{categoryTree}}" range-key="categoryName" value="{{categoryIndex}}" bindchange="changeCategory">
+            <view class="item arrow">
+                <view>{{item.name}}</view>
+                <view>{{item.value}}</view>
+            </view>
+        </picker>
+    </block>
+</view>
+<view class="title">商品详情</view>
+<scroll-view class="info" scroll-y scroll-with-animation scroll-top="{{top}}">
+    <view wx:for="{{info}}" wx:key="index" class="info-item" bindtap="changeInfo" data-id="{{index}}" data-type="{{item.type}}">
+        <image class="imgg" id="pic" mode="widthFix" wx:if="{{item.type === 'img'}}" src="{{baseUrl + item.url}}"></image>
+        <view class="text" id="text" wx:if="{{item.type === 'text'}}">{{item.text}}</view>
+        <image class="pic-delete" id="delete" src="../../img/delete_pic.png"></image>
+    </view>
+</scroll-view>
+<view class="bot">
+    <view class="view" bindtap="addInfopic">
+        <image src="../../img/pic.png"></image>
+        <text>图片</text>
+    </view>
+    <view class="mid">|</view>
+    <view class="view" bindtap="addInfoText">
+        <image src="../../img/note.png"></image>
+        <text>文字</text>
+    </view>
+</view>
+<button class='nextStep' bindtap='publish'>发布商品</button>
+<view class="mode" catchtouchmove="true" hidden="{{!showText && !showColor && !showSize}}" bindtap="bindmode" id="mode" style="justify-content: {{showColor || showSize ? 'flex-end' : 'flex-start'}}">
+    <view hidden="{{!showText}}">
+        <textarea auto-focus="true" class="textarea" value="{{textarea}}" placeholder="请输入文字" placeholder-class="pl-class" fixed bindinput="inputText"></textarea>
+        <button class='aaa' bindtap='textConfirm'>确 定</button>
+    </view>
+    <scroll-view class="scr" scroll-y hidden="{{!showColor && !showSize}}">
+        <view class="rr" wx:for="{{colorTree}}" wx:key="index" hidden="{{!showColor}}">
+            <view class="titt">{{item.attr_name}}</view>
+            <view class="iii {{filters.copyIndexOf(colorArr, it)}}" bindtap="chooseColor" wx:for="{{item.attr_value}}" wx:for-item="it" wx:for-index="idx" wx:key="idx" data-id="{{it}}">{{it}}</view>
+        </view>
+        <view class="rr" wx:for="{{sizeTree}}" wx:key="index" hidden="{{!showSize}}">
+            <view class="titt">{{item.attr_name}}</view>
+            <view class="iii {{filters.copyIndexOf(sizeArr, it)}} {{index === sizeIndex ? '' : 'sss'}}" data-index="{{index}}" bindtap="chooseSize" wx:for="{{item.attr_value}}" wx:for-item="it" wx:for-index="idx" wx:key="idx" data-id="{{it}}">{{it}}</view>
+        </view>
+    </scroll-view>
+    <view class="bot abot" hidden="{{!showColor && !showSize}}">
+        <view class="view" bindtap="cancel">取消</view>
+        <view class="view" bindtap="comfirm" style="background: linear-gradient(to right, orangered, #f33);color: #fff;">确定</view>
+    </view>
+</view>
+
+<push-box id="pushBox"></push-box>
+
+

@@ -1,0 +1,73 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+
+<view>
+    <swiper class="swiper" autoplay circular vertical wx:if="{{activity.length > 0}}">
+        <block wx:for="{{activity}}" wx:key="index">
+            <swiper-item>
+                <view class="s-item">
+                    <image src="../../img/news.png"></image>
+                    <view>{{item}}</view>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="cart-box">
+        <!-- 购车主题内容 -->
+        <view wx:if="{{list.length > 0 && load}}" class="item {{index === delIndex && openDel ? 'del' : ''}}" wx:for="{{list}}" wx:key="detailCarId">
+            <view class="item-wrap" bindtouchstart="touchS" bindtouchmove="touchM" data-select="{{item.select}}" data-index="{{index}}" bindtap="change">
+                <image class='iconName' src="../../img/{{item.select === 'circle' ? 'un' : ''}}select.png"></image>
+                <view class='goodsImg'>
+                    <image class='goodsImgs' src="{{filters.middleSize(baseUrl + item.imageUrl)}}"></image>
+                </view>
+
+                <view class="goods-info">
+                    <view class="goods-name two-line">{{item.commodityName}}</view>
+                    <view class='prContent'>
+                        <view class='goodsColor'>颜色:{{item.sku.color}}</view>
+                        <view class='size'>尺码:{{item.sku.size}}</view>
+                    </view>
+                    <view class='pcContent'>
+                        <text class="goods-price">￥{{filters.toFix(item.price)}}</text>
+                        <view class="btn-groups">
+                            <view class="goods-btn btn-minus {{item.sku.number === 1 ? 'disa' : ''}}" data-index="{{index}}" data-id="{{item.sku.detailId}}" data-num="{{item.sku.number}}" data-type="reduce" bindtap="changeCount">-</view>
+                            <view class="num">{{item.sku.number}}</view>
+                            <view class="goods-btn btn-add {{item.sku.number === 999 ? 'disa' : ''}}" data-index="{{index}}" data-id="{{item.sku.detailId}}" data-num="{{item.sku.number}}" data-type="add" bindtap="changeCount">+</view>
+                        </view>
+                    </view>
+                </view>
+
+            </view>
+            <view class="delete" data-id="{{item.detailCarId}}" data-index="{{index}}" bindtap="delete">删除</view>
+        </view>
+        <view class="empty" wx:if="{{list.length === 0 && load}}">
+            <view>购物车还是空的，快去逛逛</view>
+            <form-notice bind:formbutton="goGoods">
+                <view class="liulan">浏览商品</view>
+            </form-notice>
+        </view>
+    </view>
+</view>
+
+<!-- 下标 -->
+<view class="cart-fixbar" wx:if="{{list.length > 0}}">
+    <view class="allSelect" data-select="{{allSelect}}" bindtap="allSelect">
+        <image class="iconName" style="margin-top: 0;" src="../../img/{{allSelect === 'circle' ? 'un' : ''}}select.png"/>
+        <view class="allSelect-text">全选</view>
+    </view>
+    <view class="count">
+        <text class='allprice'> <text id='allprice'>总价：</text>
+        <text class='pricee'>￥{{filters.toFix(count)}}</text></text>
+    </view>
+    <form-notice bind:formbutton="placeOrder" style="position: absolute;bottom: 10rpx;right: 80rpx;">
+        <view class="order">下单</view>
+    </form-notice>
+</view>
+
+<push-box id="pushBox"></push-box>
+
+<view class="im-index" bindtouchmove="icontouchmove" style="top: {{iconY}}px">
+    <form-notice style="padding: 30rpx;" bind:formbutton="formbutton">
+        <image src="../../img/cuterserver.png"></image>
+    </form-notice>
+    <view wx:if="{{point}}" class="point"></view>
+</view>

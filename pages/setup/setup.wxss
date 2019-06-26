@@ -1,0 +1,43 @@
+page{
+    height: 100%;
+    padding-top: 20rpx;
+    box-sizing: border-box;
+}
+.item{
+    background-color: #fff;
+    border-radius: 8rpx;
+    margin-bottom: 20rpx;
+}
+.nav-item{
+    padding-left: 20rpx;
+}
+.nav-it{
+    height: 100rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAYCAYAAADKx8xXAAAAiUlEQVQ4T63UwQ3AIAgFUBiuR2eqzsSp6XA2QmI0rQJWL158QsxHBAAgus+yh3CkslsWCspRDmO0YiS6IgByRQ9GadWPGa7gCr24gx78glb8CS14CDU8hTOswhE2wjaW5aqcVDhK1f7H0fK7LwBapTp87bRbEY/8r7HyVKqtriBudfmzkiz6v8cHhTZ3WEgCtg4AAAAASUVORK5CYII=') no-repeat 690rpx center/14rpx 24rpx;
+}
+.head{
+    height: 128rpx;
+}
+.nav-it view{
+    color: #333;
+    font-size: 28rpx;
+}
+.item .nav-item:last-child .nav-it{
+    border-bottom: none;
+}
+.nav-it .value{
+    padding-right: 70rpx;
+}
+.nav-it image{
+    width: 98rpx;
+    height: 98rpx;
+    margin-right: 70rpx;
+    border-radius: 50%;
+}
+.no-next{
+    background: none;
+}

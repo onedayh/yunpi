@@ -1,0 +1,147 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+<scroll-view wx:if="{{load}}" scroll-y="{{isScroll}}" class='scroll-view'>
+    <view class='bigallcontent'>
+        <view class='bigImg'>
+            <image wx:if="{{detail.imagePath.length === 1}}" class='bigImgs' src='{{filters.bigSize(baseUrl + detail.imagePath[0])}}'></image>
+            <swiper wx:if="{{detail.imagePath.length > 1}}" circular="true" indicator-dots="true" autoplay="true" style="height: 700rpx;">
+                <block wx:for="{{detail.imagePath}}" wx:key="{{index}}">
+                    <swiper-item>
+                        <image src="{{filters.bigSize(baseUrl + item)}}" class="bigImgs"/>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <view class='goodsDec van-multi-ellipsis--l2'>{{detail.commodityName}}</view>
+        <view class='goodsPirce' wx:if="{{isLogin === 'customer'}}">{{detail.putaway ? '￥' + filters.toFix(detail.price) : '已下架'}}</view>
+        <view class='uptonewContent' wx:if="{{isLogin === 'customer' && detail.oriPrice > detail.price && detail.putaway}}" style="margin-top: 10rpx;">
+            {{detail.discount}}折
+            <text style="text-decoration: line-through; padding-left: 20rpx;">￥{{filters.toFix(detail.oriPrice)}}</text>
+        </view>
+        <view class='goodsPirce' wx:if="{{isLogin === 'user'}}">总销量：{{detail.salesVolume || 0}}</view>
+        <view wx:if="{{detail.reason}}" class="reason">推荐理由：{{detail.reason}}</view>
+        <view class="reason" style="font-size: 24rpx;" wx:for="{{detail.allPrice}}" wx:if="{{isLogin === 'user'}}" wx:key="index">{{item[0]}}: ￥{{filters.toFix(item[1])}}</view>
+        <view class='uptonewContent'>
+            <view class='number'>款号:{{detail.styleNumber}}</view>
+            <view class='time'>{{detail.createTime}}</view>
+            <view class='state'>上新</view>
+            <view class="zan zan1" wx:if="{{type !== 'goods'}}">
+                <image src="../../img/like2.png"></image>
+                <text>{{detail.unlike}}</text>
+            </view>
+            <view class="zan zan2" wx:if="{{type !== 'goods'}}">
+                <image src="../../img/like1.png"></image>
+                <text>{{detail.like}}</text>
+            </view>
+        </view>
+    </view>
+    <!-- 产品的描述 -->
+    <view class='goods' style="padding-bottom: {{isLogin === 'user' ? '100rpx' : '20rpx'}};" wx:if="{{info}}">
+        <view class='goodscar'>产品描述</view>
+        <view class='goodsDetils' wx:for="{{info}}" wx:key="index">
+            <text wx:if="{{item.type === 'text'}}">{{item.text}}</text>
+            <image wx:if="{{item.type === 'img'}}" src='{{filters.bigSize(baseUrl + item.url)}}' mode='widthFix'></image>
+        </view>
+    </view>
+    <!-- 底部加入购物车 -->
+    <view class='bottom' wx:if="{{isLogin === 'customer'}}">
+        <view class='bottomLeft'>
+            <view class='cuterserver' bindtap="back" wx:if="{{fromIM}}">
+                <image class='cuterserverImg' src='/img/cuterserver.png'></image>
+            </view>
+            <view class='cuterserver' wx:else>
+                <form-notice bind:formbutton="formbutton">
+                    <image class='cuterserverImg' src='/img/cuterserver.png'></image>
+                </form-notice>
+            </view>
+            <view class='line'>|</view>
+            <view class='Collection' bindtap='collect'>
+                <image class='CollectionImg' src='/img/{{detail.isCollect?"collected.png":"shouc.png"}}'></image>
+            </view>
+            <view class='line'>|</view>
+            <view class='icon-shopping' bindtap='goShoppingCar'>
+                <view class='dot' wx:if="{{detail.cartCount > 0}}"></view>
+                <image class='icon-shoppingImg' src='/img/icon-shopping.png'></image>
+            </view>
+        </view>
+        <view class="bottomRight {{!detail.putaway ? 'xiajia' : ''}}" bindtap='powerDrawer'>
+            <view>加入购物车</view>
+        </view>
+    </view>
+    <view  wx:if="{{isLogin === 'customer'}}" class='mask' wx:if="{{showModalStatus}}" catchtouchmove='true'></view>
+    <view  wx:if="{{isLogin === 'customer'}}" style='height:100rpx;'></view>
+</scroll-view>
+<view class="drawer_attr_box {{showModalStatus?'show_content':''}}"  wx:if="{{isLogin === 'customer'}}">
+    <!--drawer content-->
+    <view class="drawer_content">
+        <view class='drawer_top'>
+            <image src="{{filters.bigSize(baseUrl+detail.imagePath[0])}}" catchtap='preview'></image>
+            <view class='goods_model'>
+                <view class='price'>￥{{ filters.toFix(detail.price) }}</view>
+                <view class='style_number'>款号： {{ detail.styleNumber }}</view>
+            </view>
+            <icon class='close_btn' type="cancel" size="23" color="#b3b3ba" bindtap='closeWin'></icon>
+        </view>
+        <view class='goods_detail_tab'>
+            <zan-tab list="{{ list }}" selectedId="{{ selectedId }}" scroll="{{ scroll }}" height="{{ height }}" bind:tabchange="selectTab" />
+        </view>
+        <view class='detail_size'>
+            <view class='size' wx:for="{{list[selectedId-1].size}}" wx:key="index">
+                <view class='size_name'>{{item.size}}</view>
+                <view class='computed'>
+                    <view class='minus {{list[selectedId-1].size[index].count > 0 ? "":"no-count"}}' bindtap='minus' data-index="{{index}}">-</view>
+                    <view class='count'>
+                        <input type='number' value='{{item.count}}' data-index="{{index}}" bindinput='changeNumber'></input>
+                    </view>
+                    <view class='add {{list[selectedId-1].size[index].count >= 999 ? "no-count" : ""}}' bindtap='add' data-index="{{index}}">+</view>
+                </view>
+            </view>
+        </view>
+        <form-notice bind:formbutton="addCart">
+            <view class='enter_btn'>确认</view>
+        </form-notice>
+    </view>
+</view>
+
+<view class="user-set" wx:if="{{isLogin === 'user' && load}}">
+    <view wx:if="{{type === 'goods'}}" bindtap="set" id="in">
+        <image src="../../img/shewei.png"></image>
+        <text>设为商品卡</text>
+    </view>
+    <view wx:if="{{type === 'cardin' || type === 'goodcar'}}" bindtap="set" id="out">
+        <image src="../../img/xiajia.png"></image>
+        <text>下架商品卡</text>
+    </view>
+    <view wx:if="{{type === 'cardout' || type === 'goodout'}}" bindtap="set" id="reset">
+        <image src="../../img/cxshangjia.png"></image>
+        <text>重新上架</text>
+    </view>
+    <view class="sd" wx:if="{{type === 'cardin' || type === 'goodcar' || type === 'cardout' || type === 'goodout'}}"></view>
+    <view wx:if="{{type === 'cardin' || type === 'goodcar'}}" bindtap="set" id="share">
+        <image src="../../img/fenxiang.png"></image>
+        <text>分享商品卡</text>
+    </view>
+    <view class="sd" wx:if="{{type === 'cardin' || type === 'goodcar'}}"></view>
+    <view wx:if="{{type === 'cardin' || type === 'goodcar' || type === 'cardout' || type === 'goodout'}}" bindtap="set" id="look">
+        <image src="../../img/chakan.png"></image>
+        <text>查看数据</text>
+    </view>
+</view>
+
+<view style="position: absolute;left: -210px;top: -168px;">
+    <canvas canvas-id="myCanvas" class="my-canvas" style="width: 210px; height: 168px"></canvas>
+</view>
+<push-box id="pushBox"></push-box>
+
+<view bindtap="hideWrap" data-id="wrap" class="share-wrap" wx:if="{{showShare}}">
+    <view class="share-w" animation="{{animationData}}">
+        <button open-type="share">分享给朋友</button>
+        <button class="mid-btn" bindtap="goCanvas">分享到朋友圈</button>
+        <button bindtap="hideShareInfo">取消</button>
+    </view>
+</view>
+
+<view class="im-index" wx:if="{{comeCard}}">
+    <form-notice bind:formbutton="goIndex">
+        <image src="../../img/index.png"></image>
+    </form-notice>
+</view>

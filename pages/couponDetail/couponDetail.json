@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "推荐有奖",
+    "usingComponents": {
+        "push-box": "../../components/push-box/index"
+    }
+}

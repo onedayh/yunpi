@@ -1,0 +1,5 @@
+<form report-submit="true" bindsubmit="formSubmit" class="form">
+    <button class="form-btn" form-type="submit">
+        <slot></slot>
+    </button>
+</form>

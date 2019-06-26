@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "确认订单",
+    "usingComponents": {
+        "form-notice": "../../components/form-notice/index",
+        "push-box": "../../components/push-box/index"
+    }
+}

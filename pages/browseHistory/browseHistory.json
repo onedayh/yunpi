@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "浏览历史",
+    "usingComponents": {
+        "push-box": "../../components/push-box/index"
+    }
+}

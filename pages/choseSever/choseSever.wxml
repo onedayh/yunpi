@@ -1,0 +1,10 @@
+<view class='chosesever' wx:for="{{serverArry}}" wx:key="{{index}}">
+    <view class='serverImg'>
+        <image class='smallserverImg' src='{{item.logoPath ? baseUrl + item.logoPath : defaultHead}}'></image>
+    </view>
+    <view class='serverName'>客服：{{item.nickName}}</view>
+    <view class='chose' data-id="{{item.userId}}" data-head="{{item.logoPath}}" data-name="{{item.nickName}}" bindtap='choseSever'>选择</view>
+</view>
+
+<coupon-window bind:cha="cha" couponData="{{couponData}}"></coupon-window>
+

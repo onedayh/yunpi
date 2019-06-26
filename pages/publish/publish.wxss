@@ -1,0 +1,220 @@
+page, view, input, scroll-view, textarea{
+    box-sizing: border-box;
+}
+page{
+    padding-bottom: 120rpx;
+}
+image{
+    vertical-align: top;
+}
+.wrap{
+    background-color: #fff;
+    padding-left: 20rpx;
+    margin-bottom: 20rpx;
+}
+.input{
+    height: 98rpx;
+    line-height: 96rpx;
+    border-bottom: 2rpx solid #e6e6e6;
+    padding-right: 20rpx;
+    font-size: 28rpx;
+    color: #333;
+}
+.photo{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40rpx 0 20rpx;
+}
+.add{
+    width: 162rpx;
+    height: 162rpx;
+    font-size: 28rpx;
+    background-color: #f2f2f2;
+    color: #999;
+    font-weight: bold;
+    border-radius: 8rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+}
+.add:nth-child(4n){
+    margin-right: 0;
+}
+.img{
+    width: 162rpx;
+    height: 162rpx;
+    border-radius: 8rpx;
+}
+.pic-wrap{
+    position: relative;
+}
+.pic-delete{
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.add-pic{
+    width: 64rpx;
+    height: 64rpx;
+}
+.item{
+    height: 98rpx;
+    border-bottom: 2rpx solid #e6e6e6;
+    padding-right: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 28rpx;
+    color: #333;
+}
+.arrow{
+    padding-right: 40rpx;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAYCAYAAADKx8xXAAAAiUlEQVQ4T63UwQ3AIAgFUBiuR2eqzsSp6XA2QmI0rQJWL158QsxHBAAgus+yh3CkslsWCspRDmO0YiS6IgByRQ9GadWPGa7gCr24gx78glb8CS14CDU8hTOswhE2wjaW5aqcVDhK1f7H0fK7LwBapTp87bRbEY/8r7HyVKqtriBudfmzkiz6v8cHhTZ3WEgCtg4AAAAASUVORK5CYII=') no-repeat 700rpx center/14rpx 24rpx;
+}
+.i-input{
+    text-align: right;
+}
+.item:last-child{
+    border-bottom: none;
+}
+.title{
+    height: 108rpx;
+    padding: 20rpx 0 0 20rpx;
+    line-height: 88rpx;
+    color: #333;
+    font-size: 28rpx;
+}
+.info{
+    background-color: #fff;
+    padding: 30rpx 20rpx;
+    height: 600rpx;
+}
+.imgg{
+    display: block;
+    width: 100%;
+    margin-bottom: 20rpx;
+}
+.text{
+    color: #333;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    padding: 20rpx 50rpx 20rpx 20rpx;
+    background-color: #F2F2F2;
+    border-radius: 8rpx;
+    margin-bottom: 20rpx;
+    word-wrap: break-word;
+}
+.bot{
+    height: 100rpx;
+    border-top: 2rpx solid #e6e6e6;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.bot view{
+    font-size: 28rpx;
+    color: #666;
+}
+.bot .view{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: center;
+}
+.abot view{
+    height: 100rpx;
+    font-size: 30rpx;
+}
+.bot image{
+    width: 48rpx;
+    height: 48rpx;
+    margin-right: 10rpx;
+}
+.bot .mid{
+    position: absolute;
+    left: 50%;
+    color: #e6e6e6;
+}
+.nextStep {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+}
+.nextStep:after{
+    border: none;
+}
+.aaa, .nextStep{
+    height: 100rpx;
+    line-height: 100rpx;
+    background: linear-gradient(to right, orangered, #f33);
+    border-radius: 0;
+    color: #fff;
+    font-size: 32rpx;
+}
+.info-item{
+    position: relative;
+}
+
+.textarea{
+    padding: 20rpx;
+    height: 300rpx;
+    background-color: #fff;
+    color: #333;
+    font-size: 28rpx;
+    width: 100%;
+}
+.mode{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 5;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+.scr{
+    height: 880rpx;
+    padding: 30rpx;
+    font-size: 28rpx;
+    background-color: #fff;
+}
+.titt{
+    color: #333;
+    line-height: 40rpx;
+    margin-bottom: 20rpx;
+}
+.iii{
+    color: #999;
+    background-color: #F7F7F9;
+    padding: 8rpx 30rpx;
+    margin: 0 30rpx 20rpx 0;
+    float: left;
+    border-radius: 8rpx;
+    border: 2rpx solid transparent;
+}
+.rr{
+    padding-right: 80rpx;
+    overflow: hidden;
+}
+.select_b{
+    color: orangered;
+    border-color: orangered;
+}
+.sss{
+    color: #999;
+    border-color: transparent;
+}
+.right-v{
+    width: 500rpx;
+    text-align: right;
+}

@@ -1,0 +1,63 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+<view wx:if="{{load}}">
+    <view class="top" bindtap="goDetail">
+        <image mode="aspectFill" class="img" src="{{filters.bigSize(baseUrl + detail.imagePath[0])}}">
+            <scroll-view scroll-y class="b-wrap" scroll-into-view="{{intoView}}" scroll-with-animation="{{scAni}}" style="height: {{slHei}}px" wx:if="{{load}}">
+                <view class="b" catchtouchmove="true" id="bb">
+                    <view class="b-item" wx:for="{{barrages}}" id="id{{index}}" wx:key="index">
+                        <block wx:if="{{item.name}}">{{item.name}}：{{item.createTime}}{{item.content}}</block>
+                        <block wx:else="{{item.name}}">推荐理由：{{item.content}}</block>
+                    </view>
+                </view>
+            </scroll-view>
+        </image>
+    </view>
+    <view class="bot">
+        <view class="price">￥{{filters.toFix(detail.price)}}</view>
+        <view class="text">
+            <text>款号 {{detail.styleNumber}}</text>
+            <text style="padding-left: 20rpx;">上新日期 {{detail.createTime}}</text>
+        </view>
+        <view class="share-a" bindtap="showShareInfo">
+            <image src="../../img/share.png"></image>
+            <text>分享给朋友</text>
+        </view>
+        <view class="ce">
+            <view>
+                <image bindtap="like" data-id="like" src="../../img/up.png"></image>
+                <text>共<text class="like">{{detail.like}}</text>喜欢</text>
+            </view>
+            <view>
+                <image bindtap="like" data-id="unlike" src="../../img/down.png"></image>
+                <text>共<text class="unlike">{{detail.unlike}}</text>不喜欢</text>
+            </view>
+        </view>
+        <view class="head-wrap">
+            <image class="head" wx:for="{{ortherCustomerLogo}}" wx:key="index" src="{{item}}"></image>
+            <image class="head" src="../../img/see.png"></image>
+        </view>
+        <view class="liulan">{{detail.seeVolume}}人浏览了</view>
+    </view>
+    <view class="bor bor1">
+        <image class="msg" src="../../img/msg.gif" bindtap="goIm"></image>
+    </view>
+    <view class="bor bor2"></view>
+</view>
+<view class="login-wrap" catchtouchmove='true' animation="{{loginAnimation}}">
+    <login bindlogin="bindlogin"></login>
+</view>
+<view style="position: absolute;left: -210px;top: -168px;">
+    <canvas canvas-id="myCanvas" class="my-canvas" style="width: 210px; height: 168px"></canvas>
+</view>
+<push-box id="pushBox"></push-box>
+<view bindtap="hideWrap" data-id="wrap" class="share-wrap" wx:if="{{showShare}}">
+    <view class="share-w" animation="{{animationData}}">
+        <button open-type="share">分享给朋友</button>
+        <button class="mid-btn" bindtap="goCanvas">分享到朋友圈</button>
+        <button bindtap="hideShareInfo">取消</button>
+    </view>
+</view>
+<coupon-window bind:cha="cha" couponData="{{couponData}}"></coupon-window>
+
+
+

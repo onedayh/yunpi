@@ -1,0 +1,352 @@
+view, scroll-view{
+    box-sizing: border-box;
+}
+.top{
+    background-color: #fff;
+    height: 200rpx;
+    padding: 0 20rpx;
+    display: flex;
+    align-items: center;
+}
+.head{
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+}
+.info-wrap{
+    padding-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 120rpx;
+}
+.name{
+    font-size: 32rpx;
+    line-height: 50rpx;
+    color: #333;
+    display: flex;
+}
+.nae{
+    max-width: 280rpx;
+}
+.yuan{
+    width: 110rpx;
+    margin: 12rpx 0 0 10rpx;
+    font-size: 16rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    color: #CA941E;
+    text-align: right;
+    padding-right: 10rpx;
+    background: url(data:image/png;base64,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) no-repeat right bottom/110rpx 32rpx;
+}
+.time{
+    font-size: 24rpx;
+    color: #999;
+    line-height: 50rpx;
+}
+.add-btn{
+    width: 156rpx;
+    margin: 0;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.tab{
+    font-size: 30rpx;
+	color: #333;
+	position: relative;
+	z-index: 100;
+}
+.tab-item{
+    width: 25%;
+}
+.wrap{
+    background-color: #fff;
+    margin-top: 20rpx;
+}
+.wrap1{
+    padding: 40rpx 20rpx 0;
+}
+.wrap2{
+    padding-left: 20rpx;
+}
+.wrap3{
+    margin-top: 20rpx;
+}
+.ad{
+    background-color: transparent;
+}
+
+.clue-item{
+    display: flex;
+    justify-content: space-between;
+    min-height: 170rpx;
+    padding-bottom: 50rpx;
+    position: relative;
+}
+.clue-item:last-child{
+    padding-bottom: 0;
+}
+.clue-time{
+    width: 90rpx;
+    color: #999;
+    text-align: right;
+}
+.clue-item:before, .clue-item:after{
+    content: '';
+    background-color: #ccc;
+    position: absolute;
+}
+.clue-item:before{
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    left: 106rpx;
+    top: 10rpx;
+    z-index: 10;
+}
+.clue-item:after{
+    width: 2rpx;
+    height: 100%;
+    left: 116rpx;
+    top: 10rpx;
+}
+.clue-item:last-child:after{
+    width: 0;
+    height: 0;
+}
+.note:before{
+    background-color: orangered;
+}
+.t-date{
+    font-size: 28rpx;
+    line-height: 40rpx;
+}
+.t-hour{
+    font-size: 24rpx;
+    line-height: 36rpx;
+}
+.clue-content{
+    color: #333;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    width: 560rpx;
+}
+.note .clue-content{
+    color: orangered;
+}
+.info-item{
+    min-height: 90rpx;
+    padding: 10rpx 0;
+    border-bottom: 2rpx solid #e6e6e6;
+    font-size: 28rpx;
+    padding-right: 50rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.info-name{
+    color: #999;
+    width: 120rpx;
+}
+.info-value{
+    width: 520rpx;
+    text-align: right;
+}
+.hasid{
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAMCAYAAACulacQAAAAXklEQVQoU3XQQRLAEAyF4ZfDtTuOVPRI7NrDpRMzTKRiY/H9g6BanwsAYjxv2fWi1t4EcGZGsgFJ6QUdvWDiLljQBi4ClLfHCoRwlN+DBsgVyygaOo4ZLSgE5A77fR8wJktJ12RqdAAAAABJRU5ErkJggg==) no-repeat 700rpx center/14rpx 24rpx;
+}
+.picker{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 90rpx;
+}
+.picker-view{
+    width: 100%;
+    height: 90rpx;
+}
+.info-note{
+    font-size: 28rpx;
+    color: #999;
+    height: 90rpx;
+    line-height: 90rpx;
+}
+.note-item{
+    min-height: 120rpx;
+    padding-bottom: 30rpx;
+}
+.note-item .clue-content{
+    width: 520rpx;
+}
+.note-item:before{
+    left: 126rpx;
+}
+.note-item:after{
+    left: 136rpx;
+}
+.s-y{
+    width: 710rpx;
+    height: 300rpx;
+    padding-top: 20rpx;
+}
+.total{
+    background-color: #fff;
+    padding: 18rpx 20rpx;
+    line-height: 44rpx;
+    color: #999;
+    font-size: 24rpx;
+}
+.title {
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20rpx;
+}
+
+.title .text {
+    font-size: 28rpx;
+    color: #f33;
+}
+
+.title .detail {
+    display: flex;
+    justify-content: flex-end;
+    color: #999;
+    font-size: 26rpx;
+}
+
+.detail image {
+    width: 32rpx;
+    height: 32rpx;
+    display: block;
+    margin-right: 10rpx;
+}
+
+/* 货号产品 */
+
+.productMapContent {
+    padding: 0 20rpx;
+    background-color: #fff
+}
+
+.productMap {
+    padding: 20rpx 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mapLeft {
+    width: 260rpx;
+    height: 260rpx;
+}
+
+.mapLeftImg {
+    width: 100%;
+    height: 100%;
+}
+
+.mapRight {
+    width: 420rpx;
+    height: 260rpx;
+}
+
+.productMapDetail {
+    font-size: 28rpx;
+    margin-top: 10rpx;
+    color: #333;
+}
+
+.freightNumber {
+    padding-top: 40rpx;
+}
+.productMapPrice {
+    padding-top: 40rpx;
+    display: flex;
+    justify-content: space-between;
+}
+
+.productMapPrice .price {
+    font-size: 28rpx;
+    color: #f33;
+    font-weight: bold;
+}
+
+.productMapPrice .count, .freightNumber {
+    font-size: 24rpx;
+    color: #999;
+}
+.total-t{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 88rpx;
+    font-size: 28rpx;
+    color: #999;
+}
+.total_price{
+    color: #333;
+    padding-left: 50rpx;
+}
+.chat-title{
+    height: 88rpx;
+    display: flex;
+    align-items: center;
+    border-bottom: 2rpx solid #e6e6e6;
+    font-size: 28rpx;
+}
+.data-item{
+    padding: 0;
+    margin-top: 0;
+    margin-left: 30rpx;
+    background: #f2f2f2;
+    color: #ccc;
+    font-size: 24rpx;
+    width: 130rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+}
+.data-item::after{
+    border: none;
+}
+.date-ac{
+    background: linear-gradient(to right, orangered, #f33);
+    color: #fff;
+}
+.conta{
+    width: 100%;
+}
+ec-canvas{
+    width: 100%;
+    height: 100%;
+}
+.c-wrap{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.c-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 140rpx;
+    font-size: 28rpx;
+    border-top: 2rpx solid #e6e6e6;
+}
+.c-item:nth-child(-n+2){
+    border-top: none;
+}
+.c-item:nth-child(2n){
+    border-left: 2rpx solid #e6e6e6;
+    padding-left: 20rpx;
+}
+.c-value{
+    color: #999;
+    padding-top: 10rpx;
+}

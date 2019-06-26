@@ -1,0 +1,10 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+
+<block wx:if="{{!empty}}" wx:for="{{content}}" wx:key="{{index}}">
+    <block wx:if="{{item.type === 'text'}}" wx:for="{{item.text}}" wx:for-item="it" wx:for-index="idx" wx:key="{{idx}}">
+        <view class="p">{{it}}</view>
+    </block>
+    <image class="img" mode="widthFix" wx:if="{{item.type === 'img'}}" src="{{filters.bigSize(baseUrl + item.url)}}"></image>
+</block>
+<view wx:if="{{empty}}" class="empty">商家太懒了，暂无内容</view>
+<push-box id="pushBox"></push-box>

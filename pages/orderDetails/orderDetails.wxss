@@ -1,0 +1,401 @@
+
+
+.bg {
+    width: 100%;
+    position: relative;
+    height: 150rpx;
+}
+
+.bgImg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.topContent {
+    left: 30rpx;
+    top: 20rpx;
+    position: absolute;
+    overflow: hidden;
+    height: 150rpx;
+    width: 100%;
+    padding: 20rpx 20rpx;
+    box-sizing: border-box;
+}
+
+.tolLeftContent {
+    float: left;
+}
+
+.state {
+    color: #fff;
+    font-size: 30rpx;
+}
+
+.odeerNumber {
+    display: flex;
+    color: #fff;
+    font-size: 26rpx;
+}
+
+.odeerNumber image {
+    display: block;
+    flex: 0 0 32rpx;
+    width: 32rpx;
+    height: 32rpx;
+}
+
+.topRContetn {
+    float: right;
+    margin-right: 40rpx;
+    border: 1rpx solid#f2f2f2;
+    width: 130rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    font-size: 25rpx;
+    color: #fff;
+    border-radius: 15rpx;
+}
+
+.asContent {
+    padding: 20rpx 20rpx;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.addresImg {
+    flex: 0 0 50rpx;
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.addressImgs {
+    width: 100%;
+    height: 100%;
+}
+
+.nadContent {
+    flex: 1;
+    font-size: 28rpx;
+    margin-left: 10rpx;
+}
+
+.userName {
+    color: #333;
+    display: flex;
+}
+
+.userName .phone {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.userAddress {
+    color: #999;
+}
+
+.userNumber {
+    float: right;
+    font-size: 28rpx;
+    color: #333;
+}
+
+.content {
+    margin-top: 15rpx;
+    padding: 20rpx 20rpx;
+    background-color: #fff;
+}
+
+.contactContent {
+    display: flex;
+    align-items: center;
+    height: 66rpx;
+}
+.aaa{
+    justify-content: space-between;
+}
+.info{
+    font-size: 26rpx;
+    display: flex;
+    align-items: center;
+    padding: 6rpx 10rpx;
+}
+.info image{
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
+}
+.info-w{
+    width: 130rpx;
+}
+.add-btn{
+    width: 130rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    font-size: 28rpx;
+    margin-top: 0;
+    padding: 0;
+}
+
+.contact {
+    width: 50rpx;
+    height: 50rpx;
+    float: left;
+}
+
+.contactImg {
+    width: 100%;
+    height: 100%;
+}
+
+.contactPeople {
+    float: left;
+    font-size: 28rpx;
+    color: #333;
+    margin-left: 20rpx;
+    margin-top: 8rpx;
+}
+
+.productMap {
+    overflow: hidden;
+    width: 100%;
+    margin-top: 20rpx;
+}
+
+.mapLeft {
+    width: 240rpx;
+    height: 240rpx;
+    float: left;
+}
+
+.mapLeftImg {
+    width: 100%;
+    height: 100%;
+}
+
+.mapRight {
+    width: 450rpx;
+    height: 240rpx;
+    float: right;
+    box-sizing: border-box;
+}
+
+.productMapDetail {
+    font-size: 30rpx;
+    margin-top: 10rpx;
+    color: #000;
+}
+
+.pnContent {
+    overflow: hidden;
+    margin-top: 20rpx;
+}
+
+.productMapPrice {
+    float: left;
+    font-size: 28rpx;
+    color: #f33;
+}
+
+.productNumber {
+    float: right;
+    font-size: 28rpx;
+    color: #999;
+    margin-right: 20rpx;
+}
+
+.numberContent {
+    overflow: hidden;
+    margin-top: 40rpx;
+}
+
+.freightNumber {
+    float: left;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.number {
+    float: left;
+    margin-left: 20rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.goodsDetilCentent {
+    margin-top: 15rpx;
+    padding: 20rpx 20rpx;
+    background-color: #fff;
+}
+
+.allManyContent {
+    margin-top: 20rpx;
+    overflow: hidden;
+}
+
+.allMany {
+    float: left;
+    color: #999;
+    font-size: 28rpx;
+}
+
+.allManyNumber {
+    float: right;
+    color: #333;
+    font-size: 28rpx;
+}
+
+.dicountContent {
+    margin-top: 40rpx;
+    overflow: hidden;
+}
+
+.dicount {
+    float: left;
+    color: #999;
+    font-size: 28rpx;
+}
+
+.dicountNumber {
+    float: right;
+    color: #333;
+    font-size: 28rpx;
+}
+
+.dicountMoneyContent {
+    margin-top: 40rpx;
+    overflow: hidden;
+}
+
+.dicountMoeny {
+    float: left;
+    color: #999;
+    font-size: 28rpx;
+}
+
+.dicountMoenyNumber {
+    float: right;
+    color: #333;
+    font-size: 28rpx;
+}
+
+.goodsDicountContent {
+    margin-top: 40rpx;
+    overflow: hidden;
+}
+
+.goodsDicount {
+    float: left;
+    color: #999;
+    font-size: 28rpx;
+}
+
+.goodsDicountNumber {
+    float: right;
+    color: #333;
+    font-size: 28rpx;
+}
+
+.dicountAllContent {
+    margin-top: 40rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+}
+
+.dicountAll {
+    float: left;
+    color: #999;
+    font-size: 28rpx;
+}
+
+.dicountAllNumber {
+    float: right;
+    color: #333;
+    font-size: 28rpx;
+}
+
+.allnumber {
+    overflow: hidden;
+    font-size: 28rpx;
+    padding-left: 56.5%;
+}
+
+/* .allf {
+  float: left;
+  width: 80%;
+} */
+
+.allNumberss {
+    color: #f33;
+    float: right;
+}
+
+.orderContent {
+    background-color: #fff;
+    padding: 20rpx 20rpx;
+    margin-top: 15rpx;
+}
+
+.dContent {
+    overflow: hidden;
+}
+
+.dContentLeft {
+    float: left;
+    color: #999;
+    font-size: 28rpx;
+}
+
+.dContentRight {
+    float: right;
+    width: 150rpx;
+    height: 40rpx;
+    color: #999;
+    border: 1rpx solid#999;
+    line-height: 40rpx;
+    text-align: center;
+    font-size: 28rpx;
+    border-radius: 15rpx;
+}
+
+.allPayContent {
+    background-color: #fff;
+    padding: 20rpx 20rpx;
+    margin-top: 15rpx;
+}
+
+.payCOntent {
+    display: flex;
+    height: 74rpx;
+    align-items: center;
+}
+
+.pay {
+    flex: 3;
+    font-size: 32rpx;
+    color: #f33;
+}
+
+.allNumber {
+    flex: 2;
+    color: #999;
+    font-size: 30rpx;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20rpx;
+}
+
+.pay_btn {
+    flex: 2;
+    height: 74rpx;
+    border-radius: 40rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 30rpx;
+    background: linear-gradient(to right, orangered, #f33);
+}

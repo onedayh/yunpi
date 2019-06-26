@@ -1,0 +1,84 @@
+<!--pages/defaultOrder/defaultOrder.wxml-->
+<wxs module="filters" src="../../filters/filter.wxs" />
+<view wx:if="{{load}}">
+    <view class="top-wrap">
+        <navigator url='../addressMeneger/addressMeneger?from="defaultOrder"' class='topContent {{address.addressId?"has-address":""}}'>
+            <view class='address'>
+                <image class='addressImg' src='/img/adress.png'></image>
+            </view>
+            <view class='please' wx:if="{{!address.addressId}}">请填写收货地址</view>
+            <view class='address_msg' wx:if="{{address.addressId}}">
+                <view class='person_contact'>
+                    <view class='name'>{{address.logisticsName}}</view>
+                    <view class='mobile'>{{address.mobilePhone}}</view>
+                </view>
+                <view class='detail_address van-ellipsis'>{{address.detailedProvince+address.detailedCity+address.detailedDistrict+address.detailedAddress}}</view>
+            </view>
+            <view class='right' wx:if="{{!address.addressId}}">
+                <image class='rightImg' src='/img/right.png'></image>
+            </view>
+        </navigator>
+        <view class="set-default" wx:if="{{address.addressId}}" bindtap="setDefault">
+            <image src="../../img/{{address.defaultAddress ? '' : 'un'}}select.png"></image>
+            <text>默认地址</text>
+        </view>
+    </view>
+    <view class='content'>
+        <view class='productMapContent'>
+            <view class='productMap' wx:for="{{detail.supplyList}}" wx:key="index">
+                <view class='mapLeft'>
+                    <view class='mapLeft'>
+                        <image class='mapLeftImg' src='{{filters.middleSize(baseUrl+item.image)}}'></image>
+                    </view>
+                </view>
+                <view class='mapRight'>
+                    <view class='productMapDetail van-multi-ellipsis--l2'>{{item.commodityName}}
+                    </view>
+                    <view class='pnContent'>
+                        <view class='productMapPrice'>￥{{filters.toFix(item.priceRange)}}</view>
+                        <view class='productNumber'>x{{item.number}}</view>
+                    </view>
+
+                    <view class='numberContent'>
+                        <view class='freightNumber'>{{item.color}}</view>
+                        <view class='number'>{{item.size}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='goodsDetilCentent'>
+        <view class='allManyContent'>
+            <view class='allMany'>商品总额</view>
+            <view class='allManyNumber'>￥{{filters.toFix(detail.amout)}}</view>
+        </view>
+        <view class='dicountMoneyContent'>
+            <view class='dicountMoeny'>满减优惠金额</view>
+            <view class='dicountMoenyNumber'>￥{{filters.toFix(detail.discountPrice)}}</view>
+        </view>
+        <view class='goodsDicountContent'>
+            <view class='goodsDicount'>邀请有礼红包</view>
+            <view class='goodsDicountNumber'>￥{{filters.toFix(detail.giftBagPrice)}}</view>
+        </view>
+        <view class='dicountAllContent'>
+            <view class='dicountAll'>优惠总金额</view>
+            <view class='dicountAllNumber'>￥{{filters.toFix(detail.totoalDiscount)}}</view>
+        </view>
+    </view>
+    <view class='allPayContent'>
+        <view class='payCOntent'>
+            <view class='pay'>
+                合计:￥{{filters.toFix(detail.shouldPay)}}
+            </view>
+            <view class='allNumber'>
+                共{{detail.totoalNumber}}件商品
+            </view>
+            <form-notice bind:formbutton="submitOrder">
+                <view class='pay_btn'>提交订单</view>
+            </form-notice>
+        </view>
+    </view>
+</view>
+
+<push-box id="pushBox"></push-box>

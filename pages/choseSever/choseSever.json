@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "选择客服",
+    "usingComponents": {
+        "coupon-window": "../../components/coupon-window/index"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "发送商品卡",
+    "backgroundColor": "#fff",
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+        "push-box": "../../components/push-box/index",
+        "form-notice": "../../components/form-notice/index"
+    }
+}

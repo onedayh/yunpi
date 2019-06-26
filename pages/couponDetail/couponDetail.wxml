@@ -1,0 +1,58 @@
+<view class="top">已获得奖励</view>
+<view class="how">
+    <view class="left">{{reward}}<text>元</text></view>
+    <view class="right">立减券</view>
+</view>
+<view class="tab {{fixed ? 'fixed' : ''}}" id="tab">
+    <view wx:for="{{tabList}}" class="'tab-item' {{acTab === index ? 'ac' : ''}}" wx:key="index" bindtap="changeTab" data-id="{{index}}">{{item}}</view>
+</view>
+<view style="margin-top: {{fixed ? '108rpx' : '20rpx'}};">
+    <view hidden="{{acTab !== 0}}" class="wrap {{list0.length === 0 && load0 ? 'em' : ''}}">
+        <view class="item" wx:for="{{list0}}" wx:key="index">
+            <view class="i-left">
+                <image class="logo" src="{{item.logoUrl}}"></image>
+                <view class="name">{{item.name}}</view>
+            </view>
+            <view class="i-right">
+                <view class="txt">{{item.statusTxt}}</view>
+                <view class="time">{{item.updateTime}}</view>
+            </view>
+        </view>
+        <view wx:if="{{feedback0 && list0.length > 0}}" class="pull-down">{{feedback0}}</view>
+        <view class="no-invite" wx:if="{{list0.length === 0 && load0}}">
+            <image class="no-img" src="../../img/no_invite.png"></image>
+            <view class="text-in">暂无邀请</view>
+            <button class="invite" open-type="share">立即邀请</button>
+        </view>
+    </view>
+
+    <view hidden="{{acTab !== 1}}" class="wrap {{list1.length === 0 && load1 ? 'em' : ''}}">
+        <view class="item" wx:for="{{list1}}" wx:key="index">
+            <view class="i-left">
+                <image class="logo" src="{{item.logoUrl}}"></image>
+                <view class="name">{{item.name}}</view>
+            </view>
+            <view class="i-right">
+                <view class="txt">{{item.statusTxt}}</view>
+                <view class="time">{{item.updateTime}}</view>
+            </view>
+        </view>
+        <view wx:if="{{feedback1 && list1.length > 0}}" class="pull-down">{{feedback1}}</view>
+        <view class="empty" wx:if="{{list1.length === 0 && load1}}">暂无数据</view>
+    </view>
+
+    <view hidden="{{acTab !== 2}}" class="wrap {{list2.length === 0 && load2 ? 'em' : ''}}">
+        <view class="item" wx:for="{{list2}}" wx:key="index">
+            <view class="i-left">
+                <image class="logo" src="{{item.logoUrl}}"></image>
+                <view class="name">{{item.name}}</view>
+            </view>
+            <view class="i-right">
+                <view class="txt">{{item.statusTxt}}</view>
+                <view class="time">{{item.updateTime}}</view>
+            </view>
+        </view>
+        <view wx:if="{{feedback2 && list2.length > 0}}" class="pull-down">{{feedback2}}</view>
+        <view class="empty" wx:if="{{list2.length === 0 && load2}}">暂无数据</view>
+    </view>
+</view>

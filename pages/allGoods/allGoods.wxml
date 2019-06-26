@@ -1,0 +1,137 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+<!--顶部筛选-->
+<view wx:if="{{isLogin === 'customer'}}">
+    <view class="bg-cus"></view>
+    <view class='listContent'>
+        <view class='allgoosContent' bindtap="showFilter">
+            <view class='allGoods'>{{name}}</view>
+            <view class='allImg'>
+                <image class='allImgs' src='/img/all.png'></image>
+            </view>
+        </view>
+
+        <view class="uptoNewContent {{sortId === 'hot' ? 'ac' : ''}}" bindtap="sort" id="hot">
+            <view class='uptoNew'>最热</view>
+        </view>
+        <view class="priceContent {{sortId === 'time' ? 'ac' : ''}}" bindtap="sort" id="time">
+            <view class='price'>最近上新</view>
+        </view>
+    </view>
+    <!-- 商品图文 -->
+    <view class='goodsAll' wx:if="{{allgoodsArry.length > 0 && load}}">
+        <view class='goodcard' wx:for="{{allgoodsArry}}" wx:key="index">
+            <image class='goodcard1' src='{{filters.middleSize(baseUrl + item.imagePath)}}'></image>
+            <view class='goodcard2 one-line'>{{item.commodityName}}</view>
+            <view class='goodcard3'>￥{{filters.toFix(item.price)}}</view>
+            <view class="goodcard4">款号:{{item.styleNumber}}</view>
+            <form class="aaaf" report-submit="true" bindsubmit="goGoodsDetail" data-type="cus" data-id='{{item.cardId}}'>
+                <button class="aaab" form-type="submit"></button>
+            </form>
+        </view>
+    </view>
+    <view wx:if="{{feedback}}" class="pull-down pull-down1">{{feedback}}</view>
+    <view class="empty" wx:if="{{allgoodsArry.length === 0 && load}}">暂无数据</view>
+    <view class="mode" style="height: 100%" wx:if="{{show}}" catchtouchmove='true' data-id="mode" catchtap="hide">
+        <scroll-view class="scoll-top" animation="{{animationData}}" scroll-y>
+            <view class="{{opts.categoryId == item.categoryId ? 'cur' : ''}}" wx:for="{{filterList}}" wx:key="index" data-index="{{index}}" id="{{item.categoryId}}" catchtap="chooseGoods">{{item.categoryName}}</view>
+        </scroll-view>
+    </view>
+</view>
+<view wx:if="{{isLogin === 'user'}}">
+    <form-notice bind:formbutton="getform">
+        <view class="wwrp">
+            <view class="top">
+                <image class="head" src="{{logoPath}}"></image>
+                <view class="info-wrap">
+                    <view class="name">{{text_info}}</view>
+                    <view class="time">{{text_time}}</view>
+                </view>
+                <view class="handles" bindtap="changeHandle">{{handles ? '完成' : '批量操作'}}</view>
+            </view>
+            <view class="tab {{fixed ? 'fixed' : ''}}">
+                <view wx:for="{{tabList}}" class="'tab-item' {{acTab === index ? 'ac' : ''}}" wx:key="index" bindtap="changeTab" data-id="{{index}}">{{item}}</view>
+            </view>
+        </view>
+    </form-notice>
+    <view class="wrap" style="padding-bottom: {{handles ? '100rpx' : '0'}};">
+        <view style="background-color: #f5f5f5;height: 20rpx;"></view>
+        <view style="background-color: #fff;height: 20rpx;"></view>
+        <view hidden="{{acTab !== 0}}" style="overflow: hidden;">
+            <view class="imgleft {{item.cardId ? item.putaway ? 'card' : 'card cardout' : ''}}" wx:for="{{goodList}}" wx:key="index">
+                <view class='goodsimg'>
+                    <image class='goodsimgs' src='{{filters.middleSize(baseUrl + item.imageFirst)}}'></image>
+                </view>
+                <view class='goodsdes'>{{item.commodityName}}</view>
+                <view class='pshouContent aal'>
+                    <text class="ac">总销量：{{item.salesVolume || 0}}</text>
+                    <text class="style-number">款号：{{item.styleNumber}}</text>
+                </view>
+                <image wx:if="{{handles && !item.isCard}}" class="select-b" src="../../img/{{filters.copyIndexOf(handlesArr, item.commodityId)}}.png"></image>
+                <form class="aaaf" report-submit="true" bindsubmit="goGoodsDetail" data-num="{{item.salesVolume ? item.salesVolume : 0}}" data-type="{{item.isCard ? item.putaway ? 'goodcar' : 'goodout' : 'goods'}}" data-index="{{index}}" data-id='{{item.cardId ? item.cardId : item.commodityId}}' data-disabled="{{item.isCard ? 'iscard' : false}}">
+                    <button class="aaab" form-type="submit"></button>
+                </form>
+            </view>
+            <view wx:if="{{feedback3}}" class="pull-down">{{feedback3}}</view>
+            <view class="empty" wx:if="{{goodList.length === 0 && load3}}">暂无数据</view>
+        </view>
+        <view hidden="{{acTab !== 1}}" style="overflow: hidden">
+            <view class='imgleft card' wx:for="{{cardList}}" wx:key="index">
+                <view class='goodsimg'>
+                    <image class='goodsimgs' src='{{filters.middleSize(baseUrl + item.imageFirst)}}'></image>
+                </view>
+                <view class='goodsdes'>{{item.commodityName}}</view>
+                <view class='pshouContent aal'>
+                    <text class="ac">已售：{{item.salesVolume || 0}}</text>
+                    <text class="style-number">款号：{{item.styleNumber}}</text>
+                </view>
+                <image wx:if="{{handles}}" class="select-b" src="../../img/{{filters.copyIndexOf(handlesArr, item.cardId)}}.png"></image>
+                <form class="aaaf" report-submit="true" bindsubmit="goGoodsDetail" data-type="cardin" data-index="{{index}}" data-id='{{item.cardId}}'>
+                    <button class="aaab" form-type="submit"></button>
+                </form>
+            </view>
+            <view wx:if="{{feedback1}}" class="pull-down">{{feedback1}}</view>
+            <view class="empty" wx:if="{{cardList.length === 0 && load1}}">暂无数据</view>
+        </view>
+        <view hidden="{{acTab !== 2}}" style="overflow: hidden">
+            <view class='imgleft' wx:for="{{outList}}" wx:key="index">
+                <view class='goodsimg'>
+                    <image class='goodsimgs' src='{{filters.middleSize(baseUrl + item.imageFirst)}}'></image>
+                </view>
+                <view class='goodsdes'>{{item.commodityName}}</view>
+                <view class='pshouContent aal'>
+                    <text>已售：{{item.salesVolume || 0}}</text>
+                    <text class="style-number">款号：{{item.styleNumber}}</text>
+                </view>
+                <image wx:if="{{handles && !item.soldOut}}" class="select-b" src="../../img/{{filters.copyIndexOf(handlesArr, item.cardId)}}.png"></image>
+                <form class="aaaf" report-submit="true" bindsubmit="goGoodsDetail" data-type="cardout" data-index="{{index}}" data-id='{{item.cardId}}' data-disabled="{{item.soldOut ? 'soldout' : false}}">
+                    <button class="aaab" form-type="submit"></button>
+                </form>
+            </view>
+            <view wx:if="{{feedback2}}" class="pull-down ddd">{{feedback2}}</view>
+            <view class="empty" wx:if="{{outList.length === 0 && load2}}">暂无数据</view>
+        </view>
+        <!-- 下标 -->
+        <view class="cart-fixbar" wx:if="{{handles}}">
+            <view class="allSelect" bindtap="allSelect">
+                <image class="iconName" style="margin-top: 0;" src="../../img/{{allHandle ? '' : 'un'}}select_b.png"/>
+                <view class="allSelect-text">全选</view>
+            </view>
+            <form-notice bind:formbutton="handleSet">
+                <view class="order">{{acTab === 0 ? '设为商品卡' : acTab === 1 ? '下架商品卡' : acTab === 2 ? '上架商品卡' : ''}}</view>
+            </form-notice>
+        </view>
+    </view>
+</view>
+
+<view wx:if="{{isLogin === 'customer'}}" class="im-index">
+    <form-notice style="padding: 30rpx;" bind:formbutton="formbutton">
+        <image src="../../img/cuterserver.png"></image>
+    </form-notice>
+    <view wx:if="{{point}}" class="point"></view>
+</view>
+<push-box id="pushBox"></push-box>
+
+<view style="position: absolute;left: -210px;top: -168px;">
+    <canvas canvas-id="shopCanvas" class="shop-canvas" style="width: 210px; height: 168px"></canvas>
+</view>
+

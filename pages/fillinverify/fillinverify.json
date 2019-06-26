@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "填写验证码",
+    "backgroundColor": "#fff",
+    "disableScroll": true,
+    "usingComponents": {
+        "push-box": "../../components/push-box/index"
+    }
+}

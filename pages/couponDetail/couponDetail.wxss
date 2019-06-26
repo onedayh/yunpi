@@ -1,0 +1,124 @@
+view{
+    box-sizing: border-box;
+}
+.top{
+    height: 88rpx;
+    display: flex;
+    align-items: center;
+    padding-left: 20rpx;
+    font-size: 28rpx;
+    color: #333;
+}
+.how{
+    height: 140rpx;
+    background-color: #fff;
+    padding: 0 20rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20rpx;
+}
+.left{
+    font-size: 100rpx;
+    color: orangered;
+    display: flex;
+}
+.left text{
+    font-size: 32rpx;
+    color: #333;
+    align-self: flex-end;
+    padding-bottom: 20rpx;
+}
+.right{
+    font-size: 28rpx;
+    color: #333;
+}
+.tab-item{
+    width: 33.3%;
+    font-size: 28rpx;
+}
+.wrap{
+    padding-left: 20rpx;
+    background-color: #fff;
+}
+.em{
+    background-color: #f5f5f5;
+}
+.item{
+    padding-right: 20rpx;
+    border-bottom: 2rpx solid #e6e6e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 140rpx;
+}
+.i-left{
+    display: flex;
+    align-items: center;
+}
+.logo{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+}
+.name{
+    font-size: 32rpx;
+    color: #333;
+    padding-left: 20rpx;
+}
+.i-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+.txt{
+    font-size: 28rpx;
+    color: #333;
+    padding-bottom: 10rpx;
+}
+.time{
+    font-size: 24rpx;
+    color: #999;
+}
+.pull-down{
+    height: 80rpx;
+    line-height: 80rpx;
+    padding-top: 0;
+}
+.fixed{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.no-invite{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100rpx;
+}
+.no-img{
+    width: 240rpx;
+    height: 150rpx;
+}
+.invite{
+    background-color: orangered;
+    font-size: 32rpx;
+    height: 88rpx;
+    width: 360rpx;
+    border-radius: 44rpx;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-in{
+    color: #B1B2B3;
+    font-size: 32rpx;
+    padding: 20rpx 0 100rpx
+}
+.invite::after{
+    border: none;
+}

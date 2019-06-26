@@ -1,0 +1,19 @@
+view{
+    box-sizing: border-box;
+}
+.wrap{
+    padding: 20rpx 10rpx 0;
+}
+.save{
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 28rpx;
+    background-color: #fff;
+}
+.save image{
+    width: 48rpx;
+    height: 48rpx;
+}

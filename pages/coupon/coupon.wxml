@@ -1,0 +1,26 @@
+<view class="invite" bindtap="goInvite">
+    <image class="invite-img" src="../../img/invite.png"></image>
+    <text class="rec">推荐有奖</text>
+    <text class="tips">立减红包拿不停</text>
+</view>
+<view class="item {{item.status === 1 ? 'done' : item.status === 2 ? 'timeout' : ''}}" wx:for="{{couponList}}" wx:key="index">
+    <view class="one-box">
+        <view class="money">
+            <text class="fu">￥</text>
+            <text class="num">{{item.money}}</text>
+        </view>
+        <text class="ts">满任意金额可用</text>
+    </view>
+    <view>
+        <view class="name">{{item.typeTxt}}</view>
+        <view class="time">{{item.endTime}}前使用</view>
+    </view>
+    <form report-submit="true" bindsubmit="goUse" id="{{item.status}}">
+        <button class="btn" form-type="submit">{{item.status === 0 ? '去使用' : item.status === 1 ? '已使用' :  item.status === 2 ? '已过期' : ''}}</button>
+    </form>
+    <view class="jian">减</view>
+</view>
+<view wx:if="{{feedback && couponList.length > 0}}" class="pull-down">{{feedback}}</view>
+<view wx:if="{{couponList.length === 0 && load}}" class="empty">暂无优惠券</view>
+
+<push-box id="pushBox"></push-box>

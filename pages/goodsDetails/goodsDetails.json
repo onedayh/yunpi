@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "商品卡详情",
+	"usingComponents": {
+		"zan-tab": "../../components/detailTab/index",
+        "form-notice": "../../components/form-notice/index",
+        "push-box": "../../components/push-box/index"
+	}
+}

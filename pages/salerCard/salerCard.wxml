@@ -1,0 +1,41 @@
+<view wx:if="{{load}}" style="overflow: hidden;">
+    <view class="wrap">
+        <view class="a-wrap" bindtap="goSale">
+            <image class="logo" src="{{salerData.logoPath}}"></image>
+            <view class="name">销售：{{salerData.nickName}}</view>
+            <view class="sever">服务{{salerData.customerSize}}个客户</view>
+            <view class="label">
+                <view wx:for="{{labelList}}" wx:key="index">{{item}}</view>
+            </view>
+            <view class="text phone">
+                <text>电话：{{salerData.phoneMobile}}</text>
+                <view class="share" catchtap="showShareInfo" id="share">
+                    <image src="../../img/share.png"></image>
+                    <text>分享给好友</text>
+                </view>
+            </view>
+            <view class="text">微信：{{salerData.wechat}}</view>
+            <view class="text address">地址：{{salerData.address}}</view>
+            <image class="msg" src="../../img/msg.gif" catchtap="goIm" id="msg"></image>
+        </view>
+    </view>
+    <view class="bor bor1"></view>
+    <view class="bor bor2"></view>
+</view>
+
+<view class="login-wrap" catchtouchmove='true' animation="{{loginAnimation}}">
+    <login bindlogin="bindlogin"></login>
+</view>
+<view style="position: absolute;left: -210px;top: -168px;">
+    <canvas canvas-id="myCanvas" class="my-canvas" style="width: 210px; height: 168px"></canvas>
+</view>
+<push-box id="pushBox"></push-box>
+<view bindtap="hideWrap" data-id="wrap" class="share-wrap" wx:if="{{showShare}}">
+    <view class="share-w" animation="{{animationData}}">
+        <button open-type="share">分享给朋友</button>
+        <button class="mid-btn" bindtap="goCanvas">分享到朋友圈</button>
+        <button bindtap="hideShareInfo">取消</button>
+    </view>
+</view>
+
+<coupon-window bind:cha="cha" couponData="{{couponData}}"></coupon-window>

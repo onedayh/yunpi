@@ -1,0 +1,25 @@
+/* pages/getverify/getverify.wxss */
+page{
+    background-color: #fff;
+}
+.getuserContent {
+    padding: 80rpx;
+    margin-top: 30rpx;
+}
+
+.getuser {
+    border-bottom: 1rpx solid #ccc;
+    height: 88rpx;
+    font-size: 32rpx;
+    color: #333;
+    padding-left: 20rpx;
+}
+
+.nextStep {
+    margin-top: 60rpx;
+    height: 88rpx;
+    background: linear-gradient(to right, orangered, #f33);
+    border-radius: 44rpx;
+    color: #fff;
+    font-size: 32rpx;
+}

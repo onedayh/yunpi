@@ -1,0 +1,110 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+<scroll-view scroll-y scroll-with-animation="true" bindscroll="bindscroll" upper-threshold="0" class="{{showEmoji ? 'scroll-view' : ''}}" bindscrolltoupper="bindscrolltoupper" scroll-into-view="{{toview}}" style="height: {{scrollHeight}}px;padding-top: {{isLogin === 'user' ? '88rpx' : '0'}};" id="j_page">
+    <!-- 加载 -->
+	<view wx:if="{{load}}" class="pull-down">加载中...</view>
+    <view id="msgWrap">
+        <view wx:for="{{currentMsgsArray}}" id="{{item.id}}" class="items {{item.isSelfSend ? 'user' : 'im'}} {{item.msgTime ? 'msgTime' : ''}}" wx:key="index">
+            <view wx:if="{{item.msgTime}}" class="mess-time"><text>{{item.msgTime}}</text></view>
+            <!-- 头像 -->
+			<image class="head" src="{{item.isSelfSend ? userInfo.head : imInfo.head}}"></image>
+            
+			<!-- 商品卡片 -->
+			<view bindtap="goGoods" wx:if="{{item.msgData && item.msgData.data.type == 2}}" class="main goods" data-goodid="{{item.msgData.data.cardId}}">
+                <image class="goods-img" mode="widthFix" src="{{baseUrl + item.msgData.data.imagePath[0]}}"></image>
+                <view>
+                    <view class="one-line tit">{{item.msgData.data.commodityName}}</view>
+                    <view class="money">￥{{filters.toFix(item.msgData.data.price)}}</view>
+                </view>
+            </view>
+
+			<!-- 订单卡片 -->
+            <view bindtap="goOrder" wx:if="{{item.msgData && item.msgData.data.type == 1}}" class="main order" data-orderid="{{item.msgData.data.reservationId}}">
+                <view class="state">{{item.msgData.data.orderStatus}}</view>
+                <view class="order-num one-line"><text class="grey">订单号：</text>{{item.msgData.desc}}</view>
+                <view wx:for="{{item.msgData.data.snapShot}}" wx:for-item="it1" wx:for-index="idx1" wx:key="idx1">
+                    <view class="kh"><text class="grey">款号：</text>{{it1.styleNumber}}</view>
+                    <view class="line" wx:for="{{it1.details}}" wx:for-item="it2" wx:for-index="idx2" wx:key="idx2">
+                        <view><text class="grey">颜色：</text>{{it2.color}}</view>
+                        <view wx:for="{{it2.info}}" wx:for-item="it3" wx:for-index="idx3" wx:key="idx3" wx:if="{{idx3 < 3}}"><text class="grey">{{it3.size}}：</text>{{it3.sum}}件</view>
+                    </view>
+                </view>
+                <view class="total"><text class="grey">商品总数：</text>{{item.msgData.data.totalNum}}</view>
+            </view>
+
+			<!-- 常规消息 -->
+            <view wx:if="{{item.msgContent}}" class="main content">{{item.msgContent}}</view>
+            
+			<!-- 图片 -->
+			<view wx:if="{{item.msgImg}}" data-bigurl="{{item.msgImg.bigUrl}}" bindtap="preImg" class="main imgbox">
+                <image mode="widthFix" class="msgimg" src="{{item.msgImg.smallUrl || '../../img/errorpic.png'}}"></image>
+            </view>
+
+            <!-- 首次打招呼 -->
+            <view wx:if="{{item.msgData && item.msgData.data.type == 3}}" class="main int">
+                <view class="int-text">{{item.msgData.data.text}}</view>
+                <view class="intro" bindtap="toall">进入商城</view>
+                <view class="intro" bindtap="totro">查看档口介绍</view>
+                <view class="intro" bindtap="call">拨打我的电话</view>
+                <view class="intro" bindtap="addwx">添加我的微信</view>
+            </view>
+
+            <view wx:if="{{item.msgData && item.msgData.data.type == 4}}" class="main content">【温馨提示】你好，非常抱歉，客服现在暂时不在线，你可以把问题留言，我们收到会第一时间答复。或者，你可以直接拨打<text style="color: orangered;" data-phone="{{item.msgData.data.phone}}" bindtap="call">客服电话</text></view>
+        </view>
+    </view>
+    <view id="chat" style="height: 1px;"></view>
+</scroll-view>
+<view class="bot" animation="{{animationData}}">
+	<!-- 输入框 -->
+    <view class="bot-key">
+        <input class="input" confirm-hold="true" bindblur="bindblur" bindinput="bindinput" confirm-type="send" bindconfirm="send" value="{{text_content}}" cursor-spacing="{{spacing}}" placeholder="请输入文字" placeholder-class="pl-cls" type="text"></input>
+        <view class="box">
+            <image catchtap="openEmoji" src="../../img/emoji.png"/>
+            <image catchtap="sendImg" src="../../img/add.png"></image>
+        </view>
+    </view>
+
+	<!-- 表情 -->
+    <scroll-view scroll-y class="bq">
+        <view class="bq-wrap">
+            <view class="bq-item" catchtap="useEmoji" wx:for="{{lookData[lookValue]}}" wx:key="index" data-content="{{item}}">{{item}}</view>
+        </view>
+        <scroll-view scroll-x hidden="{{!showEmoji}}" class="bq-bot">
+            <view style="width: {{lookWidth}}rpx; padding-right: 120rpx; height: 80rpx;">
+                <view bindtap="chooseLook" wx:for="{{lookList}}" wx:key="index" class="bq-list-item {{lookValue === index ? 'curLook' : ''}}" data-value="{{index}}">{{item}}</view>
+            </view>
+            <view class="send" bindtap="send" data-type="confirm">发送</view>
+        </scroll-view>
+    </scroll-view>
+</view>
+
+<view class="im-index" wx:if="{{from === 'notice'}}" animation="{{animationData1}}">
+    <form-notice bind:formbutton="goIndex">
+        <image src="../../img/index.png"></image>
+    </form-notice>
+</view>
+
+<push-box id="pushBox"></push-box>
+
+<view class="a-b-b" wx:if="{{isLogin === 'user'}}">
+    <view bindtap="goCus" id="1">
+        <image src="../../img/user_b.png"></image>
+        <text>查看资料</text>
+    </view>
+    <view class="gang"></view>
+    <view bindtap="goCus" id="0">
+        <image src="../../img/xs_b.png"></image>
+        <text>线索记录</text>
+    </view>
+    <view class="gang"></view>
+    <view bindtap="call2">
+        <image src="../../img/cal_b.png"></image>
+        <text>打电话</text>
+    </view>
+    <view class="gang"></view>
+    <view bindtap="sendGood">
+        <image src="../../img/send_good.png"></image>
+        <text>发送商品</text>
+    </view>
+</view>
+
+

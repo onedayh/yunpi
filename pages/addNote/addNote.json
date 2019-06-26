@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "添加销售笔记",
+    "usingComponents": {
+        "push-box": "../../components/push-box/index"
+    }
+}

@@ -1,0 +1,294 @@
+.top-wrap{
+    padding: 0 30rpx 0 20rpx;
+    background-color: #fff;
+}
+
+.topContent {
+    display: flex;
+    box-sizing: border-box;
+    height: 99rpx;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.has-address {
+    height: 113rpx;
+}
+
+.address {
+    width: 50rpx;
+    height: 50rpx;
+    flex: 0 0 50rpx;
+}
+
+.addressImg {
+    width: 100%;
+    height: 100%;
+}
+
+.please {
+    flex: 1;
+    font-size: 30rpx;
+    color: #333;
+    margin-left: 20rpx;
+}
+
+.right {
+    width: 14rpx;
+    height: 28rpx;
+    flex: 0 0 14rpx;
+}
+
+.rightImg {
+    width: 100%;
+    height: 100%;
+}
+
+/* 货号产品 */
+
+.content {
+    margin-top: 15rpx;
+    padding: 20rpx 20rpx;
+    background-color: #fff;
+}
+
+.productMap {
+    overflow: hidden;
+    width: 100%;
+    margin-top: 20rpx;
+}
+
+.mapLeft {
+    width: 240rpx;
+    height: 240rpx;
+    float: left;
+}
+
+.mapLeftImg {
+    width: 100%;
+    height: 100%;
+}
+
+.mapRight {
+    width: 450rpx;
+    height: 240rpx;
+    float: right;
+    box-sizing: border-box;
+}
+
+.productMapDetail {
+    font-size: 32rpx;
+    margin-top: 10rpx;
+    color: #000;
+}
+
+.pnContent {
+    overflow: hidden;
+    margin-top: 20rpx;
+}
+
+.productMapPrice {
+    float: left;
+    font-size: 32rpx;
+    color: #f33;
+}
+
+.productNumber {
+    float: right;
+    font-size: 30rpx;
+    color: #999;
+    margin-right: 20rpx;
+}
+
+.numberContent {
+    overflow: hidden;
+    margin-top: 20rpx;
+}
+.set-default{
+    height: 88rpx;
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+    color: #333;
+    width: 50%;
+}
+.set-default image{
+    width: 36rpx;
+    height: 36rpx;
+    margin-right: 20rpx;
+}
+
+.freightNumber {
+    float: left;
+    font-size: 30rpx;
+    color: #999;
+}
+
+.number {
+    float: left;
+    margin-left: 20rpx;
+    font-size: 30rpx;
+    color: #999;
+}
+
+.goodsDetilCentent {
+    margin-top: 15rpx;
+    padding: 20rpx 20rpx;
+    background-color: #fff;
+}
+
+.allManyContent {
+    margin-top: 20rpx;
+    overflow: hidden;
+}
+
+.allMany {
+    float: left;
+    color: #999;
+    font-size: 30rpx;
+}
+
+.allManyNumber {
+    float: right;
+    color: #333;
+    font-size: 30rpx;
+}
+
+.dicountContent {
+    margin-top: 40rpx;
+    overflow: hidden;
+}
+
+.dicount {
+    float: left;
+    color: #999;
+    font-size: 30rpx;
+}
+
+.dicountNumber {
+    float: right;
+    color: #333;
+    font-size: 30rpx;
+}
+
+.dicountMoneyContent {
+    margin-top: 40rpx;
+    overflow: hidden;
+}
+
+.dicountMoeny {
+    float: left;
+    color: #999;
+    font-size: 30rpx;
+}
+
+.dicountMoenyNumber {
+    float: right;
+    color: #333;
+    font-size: 30rpx;
+}
+
+.goodsDicountContent {
+    margin-top: 40rpx;
+    overflow: hidden;
+}
+
+.goodsDicount {
+    float: left;
+    color: #999;
+    font-size: 30rpx;
+}
+
+.goodsDicountNumber {
+    float: right;
+    color: #333;
+    font-size: 30rpx;
+}
+
+.dicountAllContent {
+    margin-top: 40rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+}
+
+.dicountAll {
+    float: left;
+    color: #999;
+    font-size: 30rpx;
+}
+
+.dicountAllNumber {
+    float: right;
+    color: #333;
+    font-size: 30rpx;
+}
+
+.allPayContent {
+    background-color: #fff;
+    padding: 20rpx 20rpx;
+    margin-top: 15rpx;
+}
+
+.payCOntent {
+    display: flex;
+    height: 74rpx;
+    align-items: center;
+}
+
+.pay {
+    flex: 3;
+    font-size: 32rpx;
+    color: #f33;
+}
+
+.allNumber {
+    flex: 2;
+    color: #999;
+    font-size: 30rpx;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20rpx;
+}
+
+.pay_btn {
+    flex: 2;
+    height: 74rpx;
+    border-radius: 40rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 30rpx;
+    background: linear-gradient(to right, orangered, #f33);
+	padding:0 30rpx;
+}
+
+.address_msg {
+    flex: 1;
+    margin-left: 20rpx;
+    width: 100%;
+}
+
+.address_msg .person_contact {
+    display: flex;
+}
+
+.person_contact .name, .person_contact .mobile {
+    flex: 1;
+    font-size: 28rpx;
+    color: #333;
+}
+
+.person_contact .mobile {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.detail_address {
+    font-size: 28rpx;
+    color: #999;
+    max-width: 640rpx;
+}
+.navigator-hover{
+    background-color: transparent;
+}

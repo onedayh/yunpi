@@ -1,0 +1,9 @@
+{
+	"navigationBarTitleText": "销售",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true,
+	"usingComponents": {
+        "form-notice": "../../components/form-notice/index",
+        "push-box": "../../components/push-box/index"
+	}
+}

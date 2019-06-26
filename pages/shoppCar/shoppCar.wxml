@@ -1,0 +1,106 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+
+<view wx:if="{{isLogin === 'customer'}}">
+    <swiper class="swiper" autoplay circular vertical wx:if="{{activity.length > 0}}">
+        <block wx:for="{{activity}}" wx:key="index">
+            <swiper-item>
+                <view class="s-item">
+                    <image src="../../img/news.png"></image>
+                    <view>{{item}}</view>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="cart-box">
+        <!-- 购车主题内容 -->
+        <view wx:if="{{list.length > 0 && load}}" class="item {{index === delIndex && openDel ? 'del' : ''}}" wx:for="{{list}}" wx:key="detailCarId">
+            <view class="item-wrap" bindtouchstart="touchS" bindtouchmove="touchM" data-select="{{item.select}}" data-index="{{index}}" bindtap="change">
+                <image class='iconName' src="../../img/{{item.select === 'circle' ? 'un' : ''}}select.png"></image>
+                <view class='goodsImg'>
+                    <image class='goodsImgs' src="{{filters.middleSize(baseUrl + item.imageUrl)}}"></image>
+                </view>
+
+                <view class="goods-info">
+                    <view class="goods-name van-multi-ellipsis--l2 two-line">{{item.commodityName}}</view>
+                    <view class='prContent'>
+                        <view class='goodsColor'>颜色:{{item.sku.color}}</view>
+                        <view class='size'>尺码:{{item.sku.size}}</view>
+                    </view>
+                    <view class='pcContent'>
+                        <text class="goods-price">￥{{filters.toFix(item.price)}}</text>
+                        <view class="btn-groups">
+                            <view class="goods-btn btn-minus {{item.sku.number === 1 ? 'disa' : ''}}" data-index="{{index}}" data-id="{{item.sku.detailId}}" data-num="{{item.sku.number}}" data-type="reduce" bindtap="changeCount">-</view>
+                            <view class="num">{{item.sku.number}}</view>
+                            <view class="goods-btn btn-add {{item.sku.number === 999 ? 'disa' : ''}}" data-index="{{index}}" data-id="{{item.sku.detailId}}" data-num="{{item.sku.number}}" data-type="add" bindtap="changeCount">+</view>
+                        </view>
+                    </view>
+                </view>
+
+            </view>
+            <view class="delete" data-id="{{item.detailCarId}}" data-index="{{index}}" bindtap="delete">删除</view>
+        </view>
+        <view class="empty" wx:if="{{list.length === 0 && load}}">
+            <view>购物车还是空的，快去逛逛</view>
+            <form-notice bind:formbutton="goGoods">
+                <view class="liulan">浏览商品</view>
+            </form-notice>
+        </view>
+    </view>
+
+    <!-- 下标 -->
+    <view class="cart-fixbar" wx:if="{{list.length > 0}}">
+        <view class="allSelect" data-select="{{allSelect}}" bindtap="allSelect">
+            <image class="iconName" style="margin-top: 0;" src="../../img/{{allSelect === 'circle' ? 'un' : ''}}select.png"/>
+            <view class="allSelect-text">全选</view>
+        </view>
+        <view class="count">
+            <text class='allprice'> <text id='allprice'>总价：</text>
+                <text class='pricee'>￥{{filters.toFix(count)}}</text></text>
+        </view>
+        <form-notice bind:formbutton="placeOrder" style="position: absolute;bottom: 10rpx;right: 80rpx;">
+            <view class="order">下单</view>
+        </form-notice>
+    </view>
+</view>
+<view class="user" wx:if="{{isLogin === 'user'}}">
+    <view class="msg-top">
+        <view class="input">
+            <image class="search" src="../../img/search.png"></image>
+            <input type="text" value="{{keyword}}" placeholder="搜索客户" bindinput="bindinput" confirm-type="search" bindconfirm="getChatList" placeholder-class="pc"></input>
+        </view>
+        <view class="friends" bindtap="goList">
+            <image src="../../img/friends.png"></image>
+            <text>客户列表</text>
+        </view>
+    </view>
+    <view class="cus-wrap">
+        <view class="item2 {{item.unread ? 'ac-item2' : ''}}" wx:for="{{chatList}}" wx:key="index">
+            <image class="head" src="{{item.logoUrl}}"></image>
+            <view class="info-wrap">
+                <view class="name">
+                    {{item.customerName}}
+                    <view class="yuan">{{levelList[item.customerLevel]}}会员</view>
+                </view>
+                <view class="time1 one-line">{{item.unread ? '[' + item.unread + '条] ': ''}}{{item.text}}</view>
+            </view>
+            <view class="create-time">{{item.createTime}}</view>
+            <form report-submit="true" bindsubmit="goIm" data-id="{{item.fromAccount}}">
+                <button class='send-btn' hover-class="send-btn-hover" form-type="submit"></button>
+            </form>
+        </view>
+    </view>
+    <view class="empty e1" wx:if="{{chatList.length === 0 && load2}}">暂无消息</view>
+</view>
+
+<push-box id="pushBox"></push-box>
+
+<view wx:if="{{isLogin === 'customer'}}" class="im-index" style="top: {{iconY}}px" bindtouchmove="icontouchmove">
+    <form-notice style="padding: 30rpx;" bind:formbutton="formbutton">
+        <image src="../../img/cuterserver.png"></image>
+    </form-notice>
+    <view wx:if="{{point}}" class="point"></view>
+</view>
+
+<view style="position: absolute;left: -210px;top: -168px;">
+    <canvas canvas-id="shopCanvas" class="shop-canvas" style="width: 210px; height: 168px"></canvas>
+</view>

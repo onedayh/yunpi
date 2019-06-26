@@ -1,0 +1,8 @@
+<view class="push" catchtouchmove='true' data-type="{{pushData.type}}" data-im="{{pushData.data}}" animation="{{animationData}}" bindtap="look">
+    <image src="{{pushData.logo}}"></image>
+    <view class="text-wrap">
+        <view class="name">{{pushData.name}}</view>
+        <view class="msg">{{pushData.msg}}</view>
+    </view>
+    <view class="time">现在</view>
+</view>

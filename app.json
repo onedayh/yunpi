@@ -1,0 +1,75 @@
+{
+	"pages": [
+		"pages/grantAuthor/grantAuthor",
+		"pages/index/index",
+		"pages/allGoods/allGoods",
+		"pages/shoppingCar/shoppingCar",
+		"pages/goodsDetails/goodsDetails",
+		"pages/addressMeneger/addressMeneger",
+		"pages/choseSever/choseSever",
+		"pages/collection/collection",
+		"pages/browseHistory/browseHistory",
+		"pages/setup/setup",
+		"pages/addaddress/addaddress",
+		"pages/defaultOrder/defaultOrder",
+		"pages/orderList/orderList",
+		"pages/shoppCar/shoppCar",
+		"pages/orderDetails/orderDetails",
+		"pages/aboutus/aboutus",
+		"pages/choosePayment/choosePayment",
+		"pages/getverify/getverify",
+		"pages/fillinverify/fillinverify",
+		"pages/personOwen/personOwen",
+		"pages/im/im",
+		"pages/goodCard/goodCard",
+		"pages/customer/customer",
+		"pages/addNote/addNote",
+		"pages/cardData/cardData",
+		"pages/canvas/canvas",
+		"pages/salerCard/salerCard",
+		"pages/shopCard/shopCard",
+		"pages/sendGood/sendGood",
+		"pages/coupon/coupon",
+		"pages/invite/invite",
+		"pages/couponDetail/couponDetail",
+		"pages/publish/publish",
+		"pages/saleData/saleData"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTextStyle": "black",
+		"backgroundColor": "#f5f5f5"
+	},
+	"tabBar": {
+		"color": "#999999",
+		"borderStyle": "white",
+		"selectedColor": "#FF3333",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "销售",
+				"iconPath": "img/sales.png",
+				"selectedIconPath": "img/sales_ac.png"
+			},
+			{
+				"pagePath": "pages/allGoods/allGoods",
+				"text": "商品卡",
+				"iconPath": "img/goodcard.png",
+				"selectedIconPath": "img/goodcard_ac.png"
+			},
+			{
+				"pagePath": "pages/shoppCar/shoppCar",
+				"text": "购物车",
+				"iconPath": "img/icon-shoppingCar.png",
+				"selectedIconPath": "img/icon-shopCar.png"
+			},
+			{
+				"pagePath": "pages/personOwen/personOwen",
+				"text": "我的",
+				"iconPath": "img/mine.png",
+				"selectedIconPath": "img/mine_ac.png"
+			}
+		]
+	}
+}

@@ -1,0 +1,10 @@
+
+
+
+<view class="wrap">
+    <canvas canvas-id="myCanvas" style="width: {{cvsW}}px; height: {{cvsH}}px"></canvas>
+</view>
+<view class="save" bindtap="handleSave">
+    <image src="../../img/download.png"></image>
+    <text>保存并分享到朋友圈</text>
+</view>

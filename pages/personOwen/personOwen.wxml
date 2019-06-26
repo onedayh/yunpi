@@ -1,0 +1,66 @@
+<view class="top {{isLogin === 'user' ? 'top-user' : ''}}">
+    <view style="display: flex;" bindtap="editInfo">
+        <image wx:if="{{head}}" src="{{head}}"></image>
+        <view class="top2">
+            <view class="name">{{name}}</view>
+            <view wx:if="{{isLogin === 'customer'}}" class="set">编辑个人信息</view>
+            <view wx:if="{{isLogin === 'user'}}" class="set">客户数：{{customerCount}}</view>
+        </view>
+    </view>
+    <view class="share" bindtap="showShareInfo" wx:if="{{isLogin === 'user'}}">
+        <image src="../../img/share1.png"></image>
+        <text>分享给朋友</text>
+    </view>
+</view>
+<view class="con">
+    <view class="item">
+        <view class="all">
+            <view class="all1">{{isLogin === 'customer' ? '全部' : '销售'}}订单</view>
+            <view class="all2" data-tab="0" bindtap="goOrder">查看{{isLogin === 'customer' ? '全部' : ''}}订单</view>
+        </view>
+        <view class="icon">
+            <view class="icon-item" wx:for="{{iconList}}" wx:key="{{index}}" data-tab="{{item.tab}}" bindtap="goOrder">
+                <image src="../../img/{{isLogin === 'customer' ? item.icon : isLogin === 'user' ? item.icon_b : ''}}.png"></image>
+                <view class="text">{{item.name}}</view>
+                <view wx:if="{{item.tips}}" class="tips">{{item.tips}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="item" wx:for="{{navList}}" wx:key="{{index}}">
+        <view class="nav-item" wx:for="{{item}}" wx:for-item="it" wx:for-index="idx" wx:key="{{idx}}" wx:if="{{it.show === isLogin}}">
+            <view class="nav-it" style="position: relative; z-index: 100;" wx:if="{{it.path === 'im'}}">
+                <form-notice class="form-notice" bind:formbutton="formbutton"><view class="q"></view></form-notice>
+                <image wx:if="{{it.icon}}" src="../../img/{{it.icon}}.png"></image>
+                <view>{{it.name}}</view>
+                <view class="point" wx:if="{{point}}"></view>
+            </view>
+            <view class="nav-it" style="position: relative; z-index: 100;" wx:elif="{{it.path === 'share'}}">
+                <image wx:if="{{it.icon}}" src="../../img/{{it.icon}}.png"></image>
+                <button class="aa-btn" id="shareShop" open-type="share">{{it.name}}</button>
+                <view class="point" wx:if="{{point}}"></view>
+            </view>
+            <view class="nav-it" wx:else data-path="{{it.path}}" bindtap="goNext">
+                <image wx:if="{{it.icon}}" src="../../img/{{it.icon}}.png"></image>
+                <view>{{it.name}}</view>
+                <view class="tips-text">{{it.tips}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<button class='nextStep' bindtap='logout'>退出登录</button>
+<view style="position: absolute;left: -210px;top: -168px;">
+    <canvas canvas-id="myCanvas" class="my-canvas" style="width: 210px; height: 168px"></canvas>
+</view>
+
+<view style="position: absolute;left: -210px;top: -168px;">
+    <canvas canvas-id="shopCanvas" class="shop-canvas" style="width: 210px; height: 168px"></canvas>
+</view>
+
+<push-box id="pushBox"></push-box>
+<view bindtap="hideWrap" data-id="wrap" class="share-wrap" wx:if="{{showShare}}">
+    <view class="share-w" animation="{{animationData}}">
+        <button open-type="share" id="shareSaler">分享给朋友</button>
+        <button class="mid-btn" bindtap="goCanvas">分享到朋友圈</button>
+        <button bindtap="hideShareInfo">取消</button>
+    </view>
+</view>

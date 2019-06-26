@@ -1,0 +1,8 @@
+{
+    "backgroundColor": "#fff",
+    "disableScroll": true,
+    "usingComponents": {
+        "push-box": "../../components/push-box/index",
+        "form-notice": "../../components/form-notice/index"
+    }
+}

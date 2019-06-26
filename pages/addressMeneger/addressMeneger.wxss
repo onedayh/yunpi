@@ -1,0 +1,118 @@
+page{
+    padding: 20rpx 20rpx 320rpx;
+    box-sizing: border-box;
+}
+
+.adress {
+    width: 310rpx;
+    height: 345rpx;
+    margin-left: 30%;
+    margin-top: 200rpx;
+}
+
+.addressImg {
+    width: 100%;
+    height: 100%;
+}
+
+.adressName {
+    color: #333;
+    margin-top: 30rpx;
+    margin-left: 28%;
+    font-size: 30rpx;
+}
+.addAndweixin {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 50rpx 80rpx;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    z-index: 100;
+}
+.addDress {
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    background: linear-gradient(to right, #ff4e17, #f33);
+    text-align: center;
+    color: #fff;
+    font-size: 35rpx;
+    border-radius: 50rpx;
+    margin-bottom: 20rpx;
+}
+.makeW {
+    width: 590rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    color: #62b900;
+    border-radius: 50rpx;
+    border: 1rpx solid #62b900;
+    font-size: 35rpx;
+}
+
+.item{
+    background-color: #fff;
+    margin-bottom: 20rpx;
+    border-radius: 8rpx;
+    box-sizing: border-box;
+    padding: 20rpx 0 20rpx 20rpx;
+}
+.a-name{
+    color: #333;
+    font-size: 28rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-weight:bold;
+}
+.a-name text{
+    padding: 0 15rpx;
+}
+.address{
+    font-size: 26rpx;
+    color: #888;
+    line-height: 30rpx;
+    padding: 14rpx 0 20rpx;
+}
+.a-handle{
+    border-top: 1rpx solid #e5e5e5;
+    height: 50rpx;
+    font-size: 26rpx;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20rpx 20rpx 0 0;
+}
+.a-handle image{
+    margin-right: 10rpx;
+}
+.h-left image{
+    width: 36rpx;
+    height: 36rpx;
+}
+.h-right image{
+    width: 28rpx;
+    height: 28rpx;
+}
+.h-left, .h-right, .h-right view{
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

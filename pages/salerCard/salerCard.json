@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "销售卡",
+    "backgroundColor": "#13e2ff",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#13e2ff",
+    "navigationBarTextStyle": "white",
+    "usingComponents": {
+        "login": "../../components/login/index",
+        "push-box": "../../components/push-box/index",
+        "coupon-window": "../../components/coupon-window/index"
+    }
+}

@@ -1,0 +1,8 @@
+<view class='getuserContent'>
+    <input class='getuser' focus="true" value="{{value}}" disabled="{{type === 'phone' ? true : false}}" type="{{inputType}}" maxlength="{{inputMax}}" placeholder='请输入{{placeholder}}' bindinput="bindinput"></input>
+    <form-notice bind:formbutton="goNext">
+        <button class='nextStep'>{{text}}</button>
+    </form-notice>
+</view>
+
+<push-box id="pushBox"></push-box>

@@ -1,0 +1,10 @@
+<view class='getuserContent'>
+    <input class='getuser' value="{{phone}}" bindinput="getPhone" type='number' maxlength="11" placeholder='请输入手机号' placeholder-class="log"></input>
+    <view style="position: relative; border-bottom: 1rpx solid #ccc;">
+        <input class='getuser' style='width: 400rpx; border-bottom: none' value="{{vCode}}" maxlength="6" bindinput="getVcode" type='number' placeholder='请输入验证码' placeholder-class="log"></input>
+        <button class="send-yan" bindtap="sendVcode">{{canSend ? '获取验证码' : second + '秒后获取'}}</button>
+    </view>
+
+    <button class='nextStep' wx:if="{{hasSetting}}" bindtap='login' id="a">登录</button>
+    <button class='nextStep' wx:else open-type="getUserInfo" id="b" bindgetuserinfo="bindgetuserinfo">登录</button>
+</view>

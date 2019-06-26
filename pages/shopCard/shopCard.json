@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "店铺卡",
+    "usingComponents": {
+        "login": "../../components/login/index",
+        "push-box": "../../components/push-box/index",
+        "coupon-window": "../../components/coupon-window/index"
+    }
+}

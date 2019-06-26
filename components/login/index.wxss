@@ -1,0 +1,47 @@
+.getuserContent {
+    padding: 50rpx 80rpx;
+    margin-top: 30rpx;
+}
+.send-yan{
+    position: absolute;
+    top: 20rpx;
+    right: 0;
+    display: flex;
+    height: 50rpx;
+    justify-content: center;
+    align-items: center;
+    font-size: 26rpx;
+    background: transparent;
+    border-radius: 0;
+    color: orangered;
+    border-left: 1px solid #ccc;
+    z-index: 100;
+    padding: 0;
+    width: 200rpx;
+}
+.send-yan::after{
+    border: none;
+}
+
+.getuser {
+    box-sizing: border-box;
+    border-bottom: 1rpx solid #fff;
+    width: 590rpx;
+    height: 88rpx;
+    font-size: 32rpx;
+    color: #fff;
+    padding-left: 20rpx;
+}
+
+.nextStep {
+    margin-top: 80rpx;
+    width: 590rpx;
+    background: linear-gradient(to right, orangered, #f33);
+    border-radius: 50rpx;
+    color: #fff;
+    font-size: 32rpx;
+}
+
+.log{
+    color: #f1f1f1;
+}

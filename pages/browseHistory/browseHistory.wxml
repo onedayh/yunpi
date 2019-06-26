@@ -1,0 +1,28 @@
+<!--pages/collection/collection.wxml-->
+<!-- <text>pages/collection/collection.wxml</text> -->
+<wxs module="filters" src="../../filters/filter.wxs" />
+<view class="con">
+    <view wx:if="{{historyList.length > 0 && load}}" class='productMapContent' wx:for="{{historyList}}" wx:key="{{index}}" data-id="{{item.cardId}}" bindtap="goDetail">
+        <view class='productMap'>
+            <view class='mapLeft'>
+                <view class='mapLeft'>
+                    <image class='mapLeftImg' src='{{filters.middleSize(baseUrl + item.image)}}'></image>
+                </view>
+            </view>
+            <view class='mapRight'>
+                <view class='productMapDetail two-line'>{{item.commodityName}}</view>
+                <view class='productMapPriceContent'>
+                    <view class='productMapPrice'>￥{{filters.toFix(item.price)}}</view>
+                </view>
+                <view class='numberContent'>
+                    <view class='freightNumber'>货号:{{item.styleNumber}}</view>
+                    <view class='freightNumber'>{{item.createTime}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{feedback}}" class="pull-down">{{feedback}}</view>
+    <view wx:if="{{historyList.length === 0 && load}}" class="empty">暂无数据</view>
+</view>
+
+<push-box id="pushBox"></push-box>

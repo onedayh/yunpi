@@ -1,0 +1,10 @@
+{
+	"navigationBarTitleText": "商品卡",
+    "backgroundColor": "#fff",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+        "push-box": "../../components/push-box/index",
+        "form-notice": "../../components/form-notice/index"
+    }
+}

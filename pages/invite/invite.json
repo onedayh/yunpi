@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "推荐有奖",
+    "disableScroll": true,
+    "usingComponents": {
+        "push-box": "../../components/push-box/index"
+    }
+}

@@ -1,0 +1,30 @@
+<!--pages/choosePayment/choosePayment.wxml-->
+<wxs module="filters" src="../../filters/filter.wxs" />
+<view class='content'>
+    <view class='allgoods'>共计{{number}}件商品</view>
+    <view class='orderMoney'>订单金额:￥{{filters.toFix(money)}}</view>
+    <view class='chose'>
+        <view class='choseBank' wx:for="{{moneyArry}}" wx:key="{{index}}" bindtap='selectBank' data-index="{{index}}" data-id="{{item.accountId}}">
+            <view class='select'>
+                <view class='check' wx:if="{{!item.check}}"></view>
+                <view class='icon' wx:else>
+                    <image src='/img/select.png' mode='widthFix'></image>
+                </view>
+            </view>
+            <view class='bankDetails {{item.category === "支付宝" ? "alipay" : item.category === "微信支付" ? "wxpay" : "bankpay"}}'>
+                <view>账户类型：{{item.category}}{{item.bankName ? '-' + item.bankName : ''}}</view>
+                <view>收款账号：{{item.accountNumber}}</view>
+                <view>账户姓名：{{item.accountName}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='footer-fixed'>
+    <view class='tips'>请转账给商家后再确认付款</view>
+    <form-notice bind:formbutton="pay">
+        <view class='chosepayfor'>确认付款</view>
+    </form-notice>
+</view>
+<van-toast id="van-toast" />
+
+<push-box id="pushBox"></push-box>

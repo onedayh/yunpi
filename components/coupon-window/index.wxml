@@ -1,0 +1,26 @@
+<view class="wwrap" catchtouchmove="true" wx:if="{{couponData.show}}">
+    <view class="wrap">
+        <view class="title">Hi，亲爱的{{couponData.name}}</view>
+        <view class="tips">您已得到{{couponData.price}}元新人红包，即享首单{{couponData.price}}元立减</view>
+        <view class="item">
+            <view class="one-box">
+                <view class="money">
+                    <text class="fu">￥</text>
+                    <text class="num">{{couponData.price}}</text>
+                </view>
+                <text class="ts">满任意金额可用</text>
+            </view>
+            <view>
+                <view class="name">新客户专享红包</view>
+                <view class="time">{{time}}前使用</view>
+            </view>
+            <button class="btn">优惠券</button>
+            <view class="jian">减</view>
+        </view>
+        <form report-submit="true" bindsubmit="goBuy">
+            <button class="btn order-btn" form-type="submit">立即下单</button>
+        </form>
+        <view class="ccc" bindtap="cha"></view>
+    </view>
+    <image class="cha" src="../../img/cha.png"></image>
+</view>

@@ -1,0 +1,65 @@
+<view class="top">
+    <image class="head" src="{{baseUrl + mydata.imageFirst}}"></image>
+    <view class="info-wrap">
+        <view class="name one-line">{{mydata.commodityName}}</view>
+        <view class="time">
+            <text>款号：{{mydata.styleNumber}}</text>
+            <text>{{mydata.createTime}} 上新</text>
+            <text wx:if="{{type}}">总销量{{mydata.salesVolume}}件</text>
+        </view>
+    </view>
+</view>
+<view class="tab">
+    <view wx:for="{{tabList}}" class="'tab-item' {{acTab === index ? 'ac' : ''}}" wx:key="index" bindtap="changeTab" data-id="{{index}}">{{item}}</view>
+</view>
+<view class="wrap">
+    <view class="c-wrap" wx:if="{{!type}}">
+        <view class="c-item" wx:for="{{dataList}}" wx:key="index" id="{{item.id}}" bindtap="goNext">
+            <view class="c-name">{{item.name}}</view>
+            <view class="c-value">{{item.value}}</view>
+        </view>
+    </view>
+    <view wx:else>
+        <view hidden="{{acTab !== 0}}" class="aa {{data1.length === 0 && load1 ? 'bb' : ''}}">
+            <view>
+                <view wx:for="{{data1}}" wx:key="index" class="clue-item">
+                    <view class="clue-time">
+                        <view class="t-date">{{item.t_date}}</view>
+                        <view class="t-hour">{{item.t_hour}}</view>
+                    </view>
+                    <view class="clue-content">{{item.text}}</view>
+                </view>
+            </view>
+            <view wx:if="{{feedback1}}" class="pull-down">{{feedback1}}</view>
+            <view class="empty" wx:if="{{data1.length === 0 && load1}}">暂无数据</view>
+        </view>
+        <view hidden="{{acTab !== 1}}" class="aa {{data2.length === 0 && load2 ? 'bb' : ''}}">
+            <view>
+                <view wx:for="{{data2}}" wx:key="index" class="clue-item">
+                    <view class="clue-time">
+                        <view class="t-date">{{item.t_date}}</view>
+                        <view class="t-hour">{{item.t_hour}}</view>
+                    </view>
+                    <view class="clue-content">{{item.text}}</view>
+                </view>
+            </view>
+            <view wx:if="{{feedback2}}" class="pull-down">{{feedback2}}</view>
+            <view class="empty" wx:if="{{data2.length === 0 && load2}}">暂无数据</view>
+        </view>
+        <view hidden="{{acTab !== 2}}" class="aa {{data3.length === 0 && load3 ? 'bb' : ''}}">
+            <view>
+                <view wx:for="{{data3}}" wx:key="index" class="clue-item">
+                    <view class="clue-time">
+                        <view class="t-date">{{item.t_date}}</view>
+                        <view class="t-hour">{{item.t_hour}}</view>
+                    </view>
+                    <view class="clue-content">{{item.text}}</view>
+                </view>
+            </view>
+            <view wx:if="{{feedback3}}" class="pull-down">{{feedback3}}</view>
+            <view class="empty" wx:if="{{data3.length === 0 && load3}}">暂无数据</view>
+        </view>
+    </view>
+</view>
+
+<push-box id="pushBox"></push-box>

@@ -1,0 +1,11 @@
+<view class="item" wx:for="{{navList}}" wx:key="{{index}}">
+    <view class="nav-item" wx:for="{{item}}" wx:for-item="it" wx:for-index="idx" wx:key="{{idx}}" data-type="{{it.type}}" data-value="{{it.value}}" bindtap="goNext">
+        <view class="nav-it {{it.type === 'head' ? 'head' : ''}} {{it.type ? '' : 'no-next'}}">
+            <view>{{it.name}}</view>
+            <image wx:if="{{it.type === 'head'}}" src="{{it.value}}"></image>
+            <view wx:else class="value">{{it.value}}</view>
+        </view>
+    </view>
+</view>
+
+<push-box id="pushBox"></push-box>

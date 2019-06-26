@@ -1,0 +1,91 @@
+/* pages/browseHistory/browseHistory.wxss */
+page{
+    min-height: 100%;
+}
+
+.con{
+    background-color: #fff;
+}
+.navpicture {
+    padding: 10rpx 20rpx;
+}
+
+.picture {
+    width: 100%;
+    height: 100rpx;
+}
+
+.pictureImg {
+    width: 100%;
+    height: 100%;
+}
+
+/* 货号产品 */
+
+.productMapContent {
+    padding: 20rpx 20rpx;
+}
+
+.productMap {
+    overflow: hidden;
+    width: 100%;
+}
+
+.mapLeft {
+    width: 240rpx;
+    height: 240rpx;
+    float: left;
+}
+
+.mapLeftImg {
+    width: 100%;
+    height: 100%;
+}
+
+.mapRight {
+    width: 450rpx;
+    height: 240rpx;
+    /* float: left; */
+    float: right;
+    box-sizing: border-box;
+}
+
+.productMapDetail {
+    font-size: 28rpx;
+    margin-top: 10rpx;
+    height: 76rpx;
+    color: #000;
+}
+
+.productMapPriceContent, .numberContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50rpx;
+
+}
+.productMapPriceContent{
+    margin-top: 20rpx;
+}
+.numberContent{
+    margin-top: 15rpx;
+}
+
+.productMapPrice {
+    font-size: 30rpx;
+    font-weight: Bold;
+    color: #f33;
+}
+
+.freightNumber {
+    float: left;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.number {
+    float: right;
+    font-size: 28rpx;
+    color: #999;
+}
+

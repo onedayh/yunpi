@@ -1,0 +1,12 @@
+<view class='content'>
+    <view class='complete'>验证码已经发送至 {{phoneStar}}</view>
+    <view bindtap="reGet" class="codeTime {{time > 0 ? '' : 'reGet'}}"><text wx:if="{{time > 0}}">{{time}}s后</text>重新获取</view>
+    <view class='contentAll'>
+        <block wx:for="{{Length}}" wx:key="{{index}}">
+            <input class='codeContent' value="{{value.length >= index + 1 ? value[index] : ''}}" disabled type='text' catchtap='tap'></input>
+        </block>
+    </view>
+    <input style="width: 0; height: 0" type="number" maxlength="{{Length}}" value="{{value}}" focus="{{isFocus}}" bindinput="bindinput"></input>
+</view>
+
+<push-box id="pushBox"></push-box>

@@ -1,0 +1,79 @@
+<!--pages/orderList/orderList.wxml-->
+<wxs module="filters" src="../../filters/filter.wxs" />
+<view>
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view wx:for="{{tab}}" wx:key="index" class="tab-item {{activeIndex==item.currentTab?'active':''}}" data-current="{{item.currentTab}}" bindtap="swichNav">{{item.name}}</view>
+    </scroll-view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx" circular='true'>
+        <swiper-item wx:for="{{tab}}" wx:key="index">
+            <scroll-view scroll-y="true" class="scoll-h" bindscrolltolower="getMore">
+                <block wx:for="{{item.list}}" wx:for-item="val" wx:for-index="key" wx:key="key">
+                    <view class='title'>
+                        <view class='text'>{{val.orderStatusText}}</view>
+                        <view class='detail' wx:if="{{val.orderStatus == 1}}">
+                            <image src='/img/icon-clock.png' mode='widthFix' lazy-load='true'></image>
+                            <text>{{val.countdown}}</text>
+                        </view>
+                    </view>
+
+                    <view class='productMapContent'>
+                        <view bindtap='goToDetail' data-id="{{val.reservationId}}">
+                            <view class='productMap' wx:for="{{val.snapShot}}" wx:for-item="v" wx:for-index="k" wx:key="k">
+                                <view class='mapLeft'>
+                                    <view class='mapLeft'>
+                                        <image class='mapLeftImg' lazy-load='true' src='{{filters.middleSize(baseUrl + v.imageUrl)}}'></image>
+                                    </view>
+                                </view>
+                                <view class='mapRight'>
+                                    <view class='productMapDetail van-multi-ellipsis--l2' bindtap='product'>
+                                        {{v.commodityName}}
+                                    </view>
+                                    <view class='productMapPrice'>
+                                        <view class='price'>￥{{filters.toFix(v.priceRange)}}</view>
+                                        <view class='count'>×{{v.number}}</view>
+                                    </view>
+                                    <view class='numberContent'>
+                                        <view class='freightNumber'>{{v.color}} {{v.size}}</view>
+                                        <!-- <view class='number'>07-30 21:00</view> -->
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+
+                        <view class='total'>
+                            <view class='total_count'>共{{val.number}}件商品</view>
+                            <view class='total_price'>订单金额：￥{{filters.toFix(val.shouldPay)}}</view>
+                        </view>
+                        <view class='action_btn'>
+                            <form-notice bind:formbutton="formSubmit" data-id="{{isLogin === 'customer' ? val.reservationId : isLogin === 'user' ? val.imAccount : ''}}">
+                                <view class="btn cancel_btn">{{isLogin === 'customer' ? '联系客服' : isLogin === 'user' ? '联系客户' : ''}}</view>
+                            </form-notice>
+                            <form-notice data-id="{{val.reservationId}}" wx:if="{{val.orderStatus == 1 && isLogin === 'customer'}}" bind:formbutton="cancelOrder">
+                                <view class='btn cancel_btn'>取消订单</view>
+                            </form-notice>
+
+                            <form-notice wx:if="{{val.orderStatus == 1 && isLogin === 'customer'}}" bind:formbutton="payOrder" data-money="{{val.shouldPay}}" data-number="{{val.number}}" data-id="{{val.reservationId}}">
+                                <view class='btn pay_btn'>付款</view>
+                            </form-notice>
+
+                            <form-notice wx:if="{{val.orderStatus == 5 && isLogin === 'customer'}}" bind:formbutton="checkLogistics" data-code="{{val.delivery.waybillNumber}}" data-name="{{val.delivery.deliveryCompany}}">
+                                <view class='btn pay_btn'>查看物流</view>
+                            </form-notice>
+
+                            <form-notice wx:if="{{val.orderStatus == 6 && isLogin === 'customer'}}" bind:formbutton="deleteOrder" data-id="{{val.reservationId}}">
+                                <view class='btn cancel_btn'>删除订单</view>
+                            </form-notice>
+                        </view>
+                    </view>
+                </block>
+                <view class='load-more' hidden="{{!loadMore}}">
+                    <van-loading custom-class="loading" size="30rpx" style="margin-right:15rpx;" />
+                    <text>努力加载中</text>
+                </view>
+                <view class='no-more-data' hidden="{{!loadingComplete}}">o(╥﹏╥)o没有更多数据了</view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+</view>
+
+<push-box id="pushBox"></push-box>

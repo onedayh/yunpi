@@ -1,0 +1,21 @@
+<view class="con">
+    <view class="item">
+        <view class="name">收货人</view>
+        <input type="text" value="{{name}}" maxlength="10" bindinput="handleName" placeholder-class="place" placeholder="请输入"></input>
+    </view>
+    <view class="item">
+        <view class="name">手机号</view>
+        <input type="text" type="number" maxlength="11" value="{{phone}}" bindinput="handlePhone" placeholder-class="place" placeholder="请输入"></input>
+    </view>
+    <view class="item area-item">
+        <view class="name">地区</view>
+        <picker mode="region" class="pick" value="{{value}}" bindchange="handleChange">
+            <view class="area {{area === '请选择' ? 'place' : ''}}">{{area}}</view>
+        </picker>
+    </view>
+    <view class="address">详细地址</view>
+    <textarea value="{{address}}" maxlength="50" bindinput="handleAddress"></textarea>
+    <view class="count">{{count}} / 50</view>
+</view>
+<button class="save" bindtap="save">保存</button>
+<push-box id="pushBox"></push-box>

@@ -1,0 +1,166 @@
+<wxs module="filters" src="../../filters/filter.wxs" />
+<view wx:if="{{isLogin === 'user'}}">
+    <form-notice bind:formbutton="getform">
+        <view class="tab">
+            <view wx:for="{{showList}}" class="'tab-item' {{showType === item.type ? 'ac' : ''}}" wx:key="index" bindtap="changeType" data-id="{{item.type}}">{{item.name}}</view>
+        </view>
+    </form-notice>
+    <view hidden="{{showType !== 1}}" class="content" style="padding-top: 80rpx;">
+        <view class="item-wrap" wx:for="{{clueList}}" wx:key="index">
+            <view class="time">{{item.createTime}}</view>
+            <view class="item1" wx:if="{{item.type !== 1}}">
+                <view class="top">
+                    <form-notice bind:formbutton="goInfo" data-id="{{item.customerId}}">
+                        <view class="in">
+                            <image src="{{item.logoUrl}}" class="head"></image>
+                            <text>{{item.name}}</text>
+                        </view>
+                    </form-notice>
+                    <form-notice bind:formbutton="goDown" data-index="{{index}}">
+                        <image class="icon" src="../../img/icon_{{index === curIndex ? 'up' : 'down'}}.png"></image>
+                    </form-notice>
+                </view>
+                <view class="content">{{item.content}}</view>
+                <view class="bot" wx:if="{{index === curIndex}}">
+                    <form-notice bind:formbutton="goNote" data-id="{{item.customerId}}" data-name="{{item.name}}">
+                        <view>
+                            <image src="../../img/note.png"></image>
+                            <text>添加销售笔记</text>
+                        </view>
+                    </form-notice>
+                    <form-notice bind:formbutton="goIm" data-id="{{item.imAccount}}">
+                        <view>
+                            <image src="../../img/message.png"></image>
+                            <text>发消息</text>
+                        </view>
+                    </form-notice>
+                </view>
+            </view>
+            <view class="item1" wx:else bindtap="goInfo" data-id="{{item.customerId}}">
+                <view class="top">
+                    <view class="in">
+                        <image src="{{item.userLogoPath ? baseUrl + item.userLogoPath : defaultHead}}" class="head"></image>
+                        <text>我</text>
+                    </view>
+                </view>
+                <view class="content">对客户 <text class="org">{{item.name}}</text> 添加了销售笔记，内容是 <text class="org">{{item.content}}</text></view>
+            </view>
+        </view>
+
+        <view wx:if="{{feedback1}}" class="pull-down">{{feedback1}}</view>
+        <view class="empty" wx:if="{{clueList.length === 0 && load1}}">暂无数据</view>
+    </view>
+    <view hidden="{{showType !== 2}}" class="content" style="padding-top: 200rpx;">
+        <view class="cus-top">
+            <view class="lel {{levelId ? 'ac2' : ''}}" bindtap="showFilter">{{levelList[levelId]}}</view>
+            <view bindtap="filterCus" data-id="order" class="{{orderMax ? 'ac2' : ''}}">下单最多</view>
+            <view bindtap="filterCus" data-id="share" class="{{shareMax ? 'ac2' : ''}}">分享最多</view>
+        </view>
+        <view class="cus-wrap">
+            <view class="item2" wx:for="{{customerList}}" wx:key="index">
+                <image data-id="{{item.customerId}}" bindtap="goInfo" class="head" src="{{item.logoUrl}}"></image>
+                <view class="info-wrap" data-id="{{item.customerId}}" bindtap="goInfo">
+                    <view class="name">
+                        {{item.name}}
+                        <view class="yuan">{{item.level}}会员</view>
+                    </view>
+                    <view class="time1">{{item.activeTime ? '最近互动 ' + item.activeTime : ''}}</view>
+                </view>
+                <form report-submit="true" bindsubmit="goIm" data-id="{{item.imAccount}}" style="margin-left: auto;">
+                    <button class='add-btn' form-type="submit">发消息</button>
+                </form>
+            </view>
+        </view>
+        <view wx:if="{{feedback2}}" class="pull-down">{{feedback2}}</view>
+        <view class="empty" wx:if="{{customerList.length === 0 && load2}}">暂无数据</view>
+    </view>
+    <view class="mode" style="height: 100%" wx:if="{{showFilter}}" catchtouchmove='true' data-id="mode" catchtap="hide">
+        <scroll-view class="scoll-top" animation="{{animationFilter}}" scroll-y>
+            <view class="{{levelId === index ? 'ac2' : ''}}" wx:for="{{levelList}}" wx:key="index" data-id="level" data-index="{{index}}" catchtap="filterCus">{{item}}</view>
+        </scroll-view>
+    </view>
+</view>
+<view wx:if="{{isLogin === 'customer' && loadcus}}">
+    <view class="cus1">
+        <view class="c-top">
+            <image src="{{salerData.picture ? baseUrl + salerData.picture : defaultHead}}"></image>
+            <text>{{salerData.organizationName}}</text>
+        </view>
+        <view class="c-a">销售：{{salerData.nickName}}</view>
+        <view class="c-a">电话：{{salerData.phoneMobile}}</view>
+        <view class="c-a">微信：{{salerData.wechat}}</view>
+        <view class="c-b c-c">门店：{{salerData.organizationName}}</view>
+        <view class="c-b">地址：{{salerData.address}}</view>
+        <image class="myhead" src="{{salerData.logoPath ? salerData.logoPath.indexOf('http') > -1 ? salerData.logoPath : baseUrl + salerData.logoPath : defaultHead}}"></image>
+    </view>
+    <view class="bot-wrap">
+        <view animation="{{spreadAnimate}}" style="height: {{otherHei + 'rpx'}}; overflow: hidden">
+            <view class="c-bot" wx:for="{{salerData.otherInfraOrganization}}" wx:key="index">
+                <view class="c-qw">
+                    <view class="txt-wrap">
+                        <text class="txt1">店铺：{{item.name}}</text>
+                        <text class="txt2"></text>
+                    </view>
+                    <view class="txt-wrap">
+                        <text class="txt1">电话：{{item.phone}}</text>
+                        <text class="txt2" bindtap="call" data-phone="{{item.phone}}">拨打</text>
+                    </view>
+                    <view class="txt-wrap">
+                        <text class="txt1">地址：{{item.address}}</text>
+                        <text class="txt2" bindtap="copy" data-content="{{item.address}}">复制</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view style="padding: 0 50rpx 30rpx;background-color: #fff">
+            <view class="head-wrap">
+                <image class="head2" wx:for="{{customerLogo}}" wx:key="index" src="{{item}}"></image>
+                <image class="head2" src="../../img/see.png"></image>
+                <view class="look-more" bindtap="lookMore" wx:if="{{otherLen >= 2 && !spread}}">
+                    <image src="../../img/icon_down.png"></image>
+                    <text>查看更多</text>
+                </view>
+                <view class="look-more" bindtap="takeUp" wx:if="{{otherLen >= 2 && spread}}">
+                    <image src="../../img/icon_up.png"></image>
+                    <text>收起</text>
+                </view>
+            </view>
+            <view class="liulan">服务{{salerData.customerSize}}个客户</view>
+        </view>
+        <view class="bbot1">
+            <view bindtap="goAllGoods">
+                <image mode="aspectFit" src="../../img/look.png"></image>
+                <text>查看商品卡</text>
+            </view>
+            <view bindtap="showShareInfo">
+                <image mode="aspectFit" src="../../img/share.png"></image>
+                <text>分享给朋友</text>
+            </view>
+        </view>
+    </view>
+    <view class="bor bor1"></view>
+    <view class="bor bor2"></view>
+</view>
+
+
+<view wx:if="{{isLogin === 'customer'}}" class="im-index">
+    <form-notice style="padding: 30rpx;" bind:formbutton="formbutton">
+        <image src="../../img/cuterserver.png"></image>
+    </form-notice>
+    <view wx:if="{{point}}" class="point"></view>
+</view>
+<view style="position: absolute;left: -210px;top: -168px;">
+    <canvas canvas-id="myCanvas" class="my-canvas" style="width: 210px; height: 168px"></canvas>
+</view>
+<view style="position: absolute;left: -210px;top: -168px;">
+    <canvas canvas-id="shopCanvas" class="shop-canvas" style="width: 210px; height: 168px"></canvas>
+</view>
+
+<push-box id="pushBox"></push-box>
+<view bindtap="hideWrap" data-id="wrap" class="share-wrap" wx:if="{{showShare}}">
+    <view class="share-w" animation="{{animationData}}">
+        <button open-type="share">分享给朋友</button>
+        <button class="mid-btn" bindtap="goCanvas">分享到朋友圈</button>
+        <button bindtap="hideShareInfo">取消</button>
+    </view>
+</view>
